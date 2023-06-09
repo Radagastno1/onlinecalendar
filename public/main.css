@@ -1,0 +1,8 @@
+main {
+    margin-left:10rem;
+    width: calc(100% - 200px); 
+    margin-top: 8rem;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: rgb(234, 213, 187);
+}
