@@ -55,7 +55,27 @@
   </aside>
 
   <main>
-    
+    <div id="calendar-container">
+      <div id="calendar-header">
+        <button data-cy="prev-month">Förgående månad</button>
+        <h2 data-cy="month-year">Juni 2023</h2>
+        <button data-cy="next-month">Nästa månad</button>
+      </div>
+      <table id="calendar-table">
+        <thead>
+          <tr>
+            <th>Måndag</th>
+            <th>Tisdag</th>
+            <th>Onsdag</th>
+            <th>Torsdag</th>
+            <th>Fredag</th>
+            <th>Lördag</th>
+            <th>Söndag</th>
+          </tr>
+        </thead>
+        <tbody data-cy="calendar-body"></tbody>
+      </table>
+    </div>
   </main>
 
 </body>
