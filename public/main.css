@@ -3,11 +3,28 @@ body{
     width: 100%;
 }
 main {
-    margin-left:10rem;
-    width: calc(100% - 200px); 
-    margin-left: 350px;
+    justify-content: center;
+    margin-left:350px;
+    width: calc(100% - 350px); 
     margin-top: 8rem;
     height: 100%;
     overflow-y: scroll;
-    background-color: rgb(234, 213, 187);
+    background-color: rgb(255, 255, 255);
 }
+
+#calendar-container {
+    margin: 0 auto;
+    width: calc(100% - 200px);
+    max-width: 1200px;
+}
+
+#calendar-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#calendar-header button {
+    margin: 0 90px;
+}
+
