@@ -1,8 +1,7 @@
-window.addEventListener('DOMContentLoaded', main);
+import { showAddTodoForm } from './todo.js';
+
+document.addEventListener('DOMContentLoaded', main);
 
 function main() {
-  console.log('Hi students!');
-  // Init today view
-  // Init todos list
-  // Init calendar
+  showAddTodoForm();
 }

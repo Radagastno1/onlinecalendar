@@ -5,6 +5,7 @@ body{
 main {
     margin-left:10rem;
     width: calc(100% - 200px); 
+    margin-left: 350px;
     margin-top: 8rem;
     height: 100%;
     overflow-y: scroll;

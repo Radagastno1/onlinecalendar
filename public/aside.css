@@ -8,5 +8,70 @@ aside {
     left: 0;
     display: flexbox;
     height: 100%;
-    width: 200px;
+    width: 350px;
+}
+
+.todo-aside {
+    background-color: azure;
+    margin-top: 200px;
+    height: calc(100% - 200px);
+}
+
+.todo-reveal-form {
+    display: none;
+}
+
+.plus-icon {
+    font-size: 18px;
+}
+
+#add-todo-btn {
+    padding: 4px;
+    color: aliceblue;
+    background-color: rgb(48, 137, 238);
+    border: none;
+    border-radius: 2px;
+    height: 50px;
+    width: 260px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-family: "Helvetica", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.date-submit-div{
+    width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#save-todo-button {
+    padding: 4px;
+    color: aliceblue;
+    background-color: rgb(48, 137, 238);
+    font-family: "Helvetica", Arial, sans-serif;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 2px;
+    height: 30px;
+    font-size: 10px;
+}
+
+/* ska vara en klass för samma element som stylas istället ? */
+#todo-title-input {   
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 80px;
+    width: 240px;
+    resize: none;
+}
+
+#todo-date-input {
+    margin-left: 20px;
+    width: 130px;
+    height: 30px;
 }
