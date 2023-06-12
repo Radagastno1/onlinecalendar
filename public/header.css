@@ -15,6 +15,18 @@ header {
     top: 0;
     background-color: rgb(184, 139, 85);
     display: flex;
-    justify-content: center;
+   justify-content:center;
     align-items: center;
+}
+
+#header-items {
+    display: flex;
+    margin-left: 300px;
+}
+
+#header-items button {
+    margin: 0 200px;
+    font-size: 40px;
+    background-color: palevioletred;
+    /* fixa till knapparna till pilar sedan med hover */
 }
