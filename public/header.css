@@ -26,7 +26,17 @@ header {
 
 #header-items button {
     margin: 0 200px;
-    font-size: 25px;
-    background-color: palevioletred;
-    /* fixa till knapparna till pilar sedan med hover */
-}
+    font-size: 20px;
+    color: black; 
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer; 
+  }
+ 
+  
+  
+  
+  
+  
+  
+  
