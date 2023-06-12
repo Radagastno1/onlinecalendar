@@ -1,6 +1,4 @@
-let todoList = [
-];
-
+let todoList = [];
 
 export function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
