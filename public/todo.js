@@ -32,7 +32,7 @@ export function renderTodoList() {
 
   todoUl.innerHTML = '';
 
-  todoList.sort(t => t.date).reverse();
+  todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   let previousDate = null;
 
