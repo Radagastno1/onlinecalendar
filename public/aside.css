@@ -26,13 +26,17 @@ aside {
 }
 
 #add-todo-btn {
+    background-color: rgb(48, 137, 238);
+}
+
+#add-todo-btn,
+#show-todos-btn {
     padding: 4px;
     color: aliceblue;
-    background-color: rgb(48, 137, 238);
     border: none;
     border-radius: 2px;
     height: 50px;
-    width: 260px;
+    width: 280px;
     letter-spacing: 2px;
     font-size: 14px;
     font-family: "Helvetica", Arial, sans-serif;
@@ -41,7 +45,7 @@ aside {
     justify-content: space-around;
 }
 
-.date-submit-div{
+.date-submit-div {
     width: 260px;
     display: flex;
     align-items: center;
@@ -61,7 +65,7 @@ aside {
 }
 
 /* ska vara en klass för samma element som stylas istället ? */
-#todo-title-input {   
+#todo-title-input {
     border-radius: 4px;
     margin-top: 20px;
     margin-left: 20px;
@@ -74,4 +78,16 @@ aside {
     margin-left: 20px;
     width: 130px;
     height: 30px;
+}
+
+.todo-reveal-list {
+    display: none;
+}
+
+.alltodos-div {
+    margin-top: 20px;
+}
+
+#show-todos-btn {
+    background-color: darkseagreen;
 }
