@@ -72,25 +72,6 @@ function saveTodo() {
 
 function getTodaysDate() {
   var today = new Date();
-  today = generateDateFormat(today);
-  return today;
+  return today.toISOString().split('T')[0];
 }
 
-function generateDateFormat(date) {
-
-  var dd = date.getDate();
-
-  var mm = date.getMonth() + 1;
-
-  var yyyy = date.getFullYear();
-
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-  formatedDate = yyyy + '-' + mm + '-' + dd;
-  return formatedDate;
-}
