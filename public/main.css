@@ -1,6 +1,7 @@
 body{
     height: 100%;
     width: 100%;
+    
 }
 main {
     justify-content: center;
@@ -8,23 +9,28 @@ main {
     width: calc(100% - 350px); 
     margin-top: 8rem;
     height: 100%;
-    overflow-y: scroll;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(235, 186, 186);  
 }
 
-#calendar-container {
-    margin: 0 auto;
-    width: calc(100% - 200px);
-    max-width: 1200px;
+
+#calendar-table {
+    justify-content: center;
+    font-size: 30px;
+    padding: 0 20px;
 }
 
-#calendar-header { 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.day {
+    justify-content: center;
+    font-size: 30px;
+    padding: 0 64px; 
 }
 
-#calendar-header button {
-    margin: 0 90px;
+[data-cy="calendar-cell"] {
+    border: 1px solid black;
+    padding: 54px 52px;
+    grid-column: span;
 }
+
+
+
 
