@@ -32,10 +32,20 @@ export function renderTodoList() {
 
   todoUl.innerHTML = '';
 
+  let previousDate = null;
+
   for (const todo of todoList) {
+    if(todo.date != todo.date[previousDate])
+    {
+      const title = document.createElement('h3'); 
+      title.textContent = todo.date;
+      todoUl.appendChild(title);
+    }
     const li = document.createElement('li');
     li.textContent = todo.title;
     todoUl.appendChild(li);
+    
+    previousDate = todo.date; 
   }
   if (todoList.length == 0) {
     const li = document.createElement('li');
