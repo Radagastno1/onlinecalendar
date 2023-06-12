@@ -32,20 +32,22 @@ export function renderTodoList() {
 
   todoUl.innerHTML = '';
 
+  todoList.sort(t => t.date).reverse();
+
   let previousDate = null;
 
   for (const todo of todoList) {
-    if(todo.date != todo.date[previousDate])
-    {
-      const title = document.createElement('h3'); 
+    if (todo.date !== previousDate) {
+      const title = document.createElement('h3');
       title.textContent = todo.date;
       todoUl.appendChild(title);
+      previousDate = todo.date;
     }
     const li = document.createElement('li');
     li.textContent = todo.title;
     todoUl.appendChild(li);
-    
-    previousDate = todo.date; 
+
+    previousDate = todo.date;
   }
   if (todoList.length == 0) {
     const li = document.createElement('li');
@@ -58,13 +60,14 @@ function saveTodo() {
   const todoTitle = document.querySelector('#todo-title-input').value;
   const todoDate = document.querySelector('#todo-date-input').value;
 
-  const todo = {
-    title: todoTitle,
-    date: todoDate
-  };
-
-  todoList.push(todo);
-  localStorage.setItem('todoList', JSON.stringify(todoList));
+  if (todoTitle && todoDate > getTodaysDate()) {
+    const todo = {
+      title: todoTitle,
+      date: todoDate
+    };
+    todoList.push(todo);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }
 }
 
 function getTodaysDate() {
