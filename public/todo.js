@@ -1,6 +1,7 @@
 let todoList = [
 ];
 
+
 export function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
   const addTodoForm = document.querySelector('#add-todo-form');
@@ -27,13 +28,18 @@ export function addEventListeners() {
 export function renderTodoList() {
   const todoUl = document.querySelector('#todo-list');
 
+  if (localStorage.getItem('todoList')) {
+    todoList = JSON.parse(localStorage.getItem('todoList'));
+  }
+
+  todoUl.innerHTML = '';
+
   for (const todo of todoList) {
     const li = document.createElement('li');
     li.textContent = todo.title;
     todoUl.appendChild(li);
   }
-  if(todoList.length == 0)
-  {
+  if (todoList.length == 0) {
     const li = document.createElement('li');
     li.textContent = "Det finns ingen todo än.."
     todoUl.appendChild(li);
