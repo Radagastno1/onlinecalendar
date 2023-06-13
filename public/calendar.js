@@ -14,6 +14,18 @@ export function updateCalendarCells() {
     for (var i = 0; i < 6; i++) {
         var row = document.createElement('tr');
 
+        for (var j = 0; j < 7; j++) {
+            var cell = document.createElement('td');
+
+            if (i === 0 && j < startingDay) {
+                cell.textContent = '';
+            }else if (dayCounter > daysInMonth) {
+                cell.textContent = '';
+            }else {
+                cell.textContent = dayCounter;
+            }
+        }
+
     }
 }
 
