@@ -16,6 +16,7 @@ export function updateCalendarCells() {
 
         for (var j = 0; j < 7; j++) {
             var cell = document.createElement('td');
+            cell.setAttribute('data-cy', 'calendar-cell');
 
             if (i === 0 && j < startingDay) {
                 cell.textContent = '';
@@ -30,7 +31,6 @@ export function updateCalendarCells() {
 
                 dayCounter++;
             }
-            cell.classList.add('calendar-cell');
             row.appendChild(cell);
         }
         calendarBody.appendChild(row);
