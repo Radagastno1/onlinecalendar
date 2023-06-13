@@ -1,10 +1,30 @@
-// var monthYearElement = document.querySelector('[data-cy="month-year"]');
+export function updateCalendarCells() {
+    var calendarBody = document.getElementById('calendar-body');
+    calendarBody.innerHTML = '';
 
-// var currentDate = new Date();
+    var currentDate = new Date();
+    var currentDay = currentDate.getDate();
 
-// function changeMonth(offset) {
-//     currentDate.setMonth(currentDate.getMonth() + offset);
+    var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    var startingDay = firstDayOfMonth.getDay();
+
+    var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    var dayCounter = 1;
+
+    for (var i = 0; i < 6; i++) {
+        var row = document.createElement('tr');
+
+    }
+}
+
+// export function updateCalendarCells() {
+//     var date = new Date();
+//     var dayOfMonth = date.getDate();
+//     var calendarCells = document.querySelectorAll('[data-cy="calendar-cell"]');
+
+//     calendarCells.forEach(function(cell) {
+//         cell.textContent = dayOfMonth.toString();
+//         dayOfMonth++;
+//     });
+
 // }
-
-// var month = currentDate.toLocaleString('sv-SE', { month: 'long'});
-// var year = currentDate.getFullYear();

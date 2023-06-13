@@ -4,6 +4,7 @@ import { showListOfTodos } from './todo.js';
 import { renderTodoList } from './todo.js';
 import { presentDateAndTime } from './today.js';
 import { updateClock } from './today.js';
+import { updateCalendarCells } from './calendar.js';
 
 document.addEventListener('DOMContentLoaded', main);
 
@@ -14,4 +15,5 @@ function main() {
   showListOfTodos();
   presentDateAndTime();
   updateClock();
+  updateCalendarCells();
 }
