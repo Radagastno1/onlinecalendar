@@ -4,6 +4,8 @@ function main() {
   //anropar funktioner från todo
   getDataFromLS();
   addEventListeners();
+  const todosUl = document.querySelector('#todo-list');
+  todosUl.classList.remove('todo-reveal-list');
   showAddTodoForm();
   renderTodoList();
   showListOfTodos();

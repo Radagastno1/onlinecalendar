@@ -26,7 +26,7 @@ function addEventListeners() {
 
 }
 
-function getDataFromLS(){
+function getDataFromLS() {
   if (localStorage.getItem('todoList')) {
     todoList = JSON.parse(localStorage.getItem('todoList'));
   }
@@ -48,21 +48,35 @@ function renderTodoList() {
         title.textContent = todo.date ?? "Laddar datum...";
         todoUl.appendChild(title);
         previousDate = todo.date;
+
       }
       const li = document.createElement('li');
       const link = document.createElement('a');
       link.textContent = todo.title ?? "Laddar text...";
       link.href = '#';
 
+      const removeButton = document.createElement('button');
+      removeButton.classList.add('todo-remove-button');
+      removeButton.setAttribute('data-cy', 'delete-todo-button');
+
+      const removeIcon = document.createElement('i');
+      removeIcon.classList.add('fas', 'fa-trash-alt');
+
+      removeButton.addEventListener('click', () => {
+        removeTodo(todo);
+      });
+
+      removeButton.appendChild(removeIcon);
+
       link.addEventListener('click', () => {
         showTodoPopup(todo);
       });
 
       li.appendChild(link);
+      li.appendChild(removeButton);
       todoUl.appendChild(li);
 
       previousDate = todo.date;
-
     }
   }
   else {
@@ -97,7 +111,7 @@ function showTodoPopup(todo) {
 
   const removeButton = document.createElement('button');
   removeButton.classList.add('todo-remove-button');
-  removeButton.setAttribute('id', 'delete-todo-button');
+  removeButton.setAttribute('data-cy', 'delete-todo-button');
   removeButton.textContent = 'Ta bort';
 
   popupHeader.appendChild(dateElement);
@@ -135,6 +149,9 @@ function saveTodo() {
     todoList.push(todo);
     localStorage.setItem('todoList', JSON.stringify(todoList));
     renderTodoList();
+
+    const todosUl = document.querySelector('#todo-list');
+    todosUl.classList.add('todo-reveal-list');
   }
 }
 

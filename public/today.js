@@ -23,22 +23,11 @@ function presentDateAndTime() {
   
   function updateClock() {
     var dateTime = presentDateAndTime();
-    const timeElement = document.getElementById('time');
-    const dayElement = document.getElementById('day');
-    const dateElement = document.getElementById('date');
-  
-    if (timeElement !== null) {
-      timeElement.textContent = dateTime.time;
-    }
-  
-    if (dayElement !== null) {
-      dayElement.textContent = dateTime.day;
-    }
-  
-    if (dateElement !== null) {
-      dateElement.textContent = dateTime.date;
-    }
+    document.getElementById('time').textContent = dateTime.time;
+    document.getElementById('day').textContent = dateTime.day;
+    document.getElementById('date').textContent = dateTime.date;
   }
+  
   // Uppdatera klockan varje sekund
   setInterval(updateClock, 1000);
   
