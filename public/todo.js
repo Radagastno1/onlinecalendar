@@ -21,6 +21,7 @@ export function showListOfTodos() {
 export function addEventListeners() {
   const saveButton = document.querySelector('#save-todo-button');
   saveButton.addEventListener('click', saveTodo);
+
 }
 
 export function renderTodoList() {
@@ -44,7 +45,15 @@ export function renderTodoList() {
       previousDate = todo.date;
     }
     const li = document.createElement('li');
-    li.textContent = todo.title;
+    const link = document.createElement('a');
+    link.textContent = todo.title;
+    link.href = '#';
+
+    link.addEventListener('click', () => {
+      showTodoPopup(todo);
+    });
+
+    li.appendChild(link);
     todoUl.appendChild(li);
 
     previousDate = todo.date;
@@ -54,6 +63,50 @@ export function renderTodoList() {
     li.textContent = "Det finns ingen todo än.."
     todoUl.appendChild(li);
   }
+}
+
+// här skapas popup med element för varje gång man klickar på todo, finns bättre sätt
+// tex att ha en template i en html-fil som laddas in som mall för popup
+// men detta för att öva och förstå vad man kan göra med javascript
+function showTodoPopup(todo) {
+  const divElement = document.createElement('div');
+  divElement.classList.add('popup-div');
+
+  const popupHeader = document.createElement('div');
+  popupHeader.classList.add('popup-header');
+
+  const dateElement = document.createElement('h3');
+  dateElement.classList.add('popup-date');
+  dateElement.textContent = todo.date;
+
+  const icon = document.createElement('i');
+  icon.classList.add('fa', 'fa-window-close');
+  icon.setAttribute('aria-hidden', 'true');
+  icon.setAttribute('id', 'popup-close-icon');
+
+  const title = document.createElement('h4');
+  title.classList.add('popup-title');
+  title.textContent = todo.title;
+
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('todo-remove-button');
+  removeButton.textContent = 'Ta bort';
+
+  popupHeader.appendChild(dateElement);
+  popupHeader.appendChild(icon);
+
+  //här sätter jag de olika elementen till själva popupen
+  divElement.appendChild(popupHeader);
+  divElement.appendChild(title);
+  divElement.appendChild(removeButton);
+
+  //och här sätts hela popupen som barn till DOMen
+  document.body.appendChild(divElement);
+
+  //lägger eventlyssnare här för att stänga popupen
+  const closePopupIcon = document.querySelector('#popup-close-icon');
+  closePopupIcon.addEventListener('click', closePopup);
+
 }
 
 function saveTodo() {
@@ -68,6 +121,11 @@ function saveTodo() {
     todoList.push(todo);
     localStorage.setItem('todoList', JSON.stringify(todoList));
   }
+}
+
+function closePopup(){
+  const popUpDiv = document.querySelector('.popup-div');
+  popUpDiv.remove();
 }
 
 function getTodaysDate() {

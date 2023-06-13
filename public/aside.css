@@ -153,3 +153,48 @@ aside {
     margin: 0; 
   }
  
+  .popup-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 192, 203, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-header{
+    display: flex;
+  }
+
+  .todo-remove-button{
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: #807e7e;
+    margin-top: 5px;
+    padding: 4px;
+    font-size: 15px;
+    color: #555;
+  }
+
+  .fa.fa-window-close {
+    color: #555;
+    opacity: 0.4;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  /* delade regler */
+  a{
+    text-decoration: none;
+  }
+  h1, h2, h3, h4, h5, p{
+    font-family: "Helvetica", Arial, sans-serif;
+  }
+  button, a, i{
+    cursor: pointer;
+  }
