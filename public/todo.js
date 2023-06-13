@@ -100,6 +100,10 @@ function showTodoPopup(todo) {
   divElement.appendChild(title);
   divElement.appendChild(removeButton);
 
+  removeButton.addEventListener('click', () => {
+    removeTodo(todo);
+  });
+
   //och här sätts hela popupen som barn till DOMen
   document.body.appendChild(divElement);
 
@@ -121,6 +125,24 @@ function saveTodo() {
     todoList.push(todo);
     localStorage.setItem('todoList', JSON.stringify(todoList));
   }
+  renderTodoList();
+}
+
+function removeTodo(todo){
+  //hittar platsen i listan där referensen till todon finns
+  const indexForTodo = todoList.findIndex(t => t === todo);
+
+  if(indexForTodo >= 0){
+    //tar bort en todo på den platsen i listan som den fanns på
+    todoList.splice(indexForTodo, 1);
+  }
+  //sätter den nya listan i localstorage
+  localStorage.setItem('todoList', JSON.stringify(todoList));
+
+  closePopup();
+
+  renderTodoList();
+
 }
 
 function closePopup(){
