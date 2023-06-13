@@ -6,7 +6,8 @@ export function updateCalendarCells() {
     var currentDay = currentDate.getDate();
 
     var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    var startingDay = firstDayOfMonth.getDay();
+    var startingDay = (firstDayOfMonth.getDay() + 6) % 7;
+
 
     var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     var dayCounter = 1;
@@ -38,15 +39,3 @@ export function updateCalendarCells() {
         calendarBody.appendChild(row);
     }
 }
-
-// export function updateCalendarCells() {
-//     var date = new Date();
-//     var dayOfMonth = date.getDate();
-//     var calendarCells = document.querySelectorAll('[data-cy="calendar-cell"]');
-
-//     calendarCells.forEach(function(cell) {
-//         cell.textContent = dayOfMonth.toString();
-//         dayOfMonth++;
-//     });
-
-// }
