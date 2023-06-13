@@ -1,4 +1,4 @@
-export function presentDateAndTime() {
+function presentDateAndTime() {
     var newDate = new Date();
   
     var options = {
@@ -21,7 +21,7 @@ export function presentDateAndTime() {
     };
   }
   
-  export function updateClock() {
+  function updateClock() {
     var dateTime = presentDateAndTime();
     document.getElementById('time').textContent = dateTime.time;
     document.getElementById('day').textContent = dateTime.day;

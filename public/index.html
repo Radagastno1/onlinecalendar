@@ -6,9 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <script type="module" src="main.js"></script>
+  <script src="main.js"></script>
   <script src="calendar.js"></script>
   <script src="todo.js"></script>
+  <script src="today.js"></script>
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="aside.css">
@@ -20,7 +21,7 @@
 
   <header>
     <div id="header-items">
-      <button data-cy="prev-month" onclick="changeMonth(-1)"><</button>
+      <button data-cy="prev-month" onclick="changeMonth(-1)">></button>
       <h2 data-cy="month-year">Juni 2023</h2>
       <button data-cy="next-month" onclick="changeMonth(1)">></button>
     </div>
@@ -43,33 +44,33 @@
 
         <button id="add-todo-btn">
           Lägg till todo i kalender
-          <i class="fas fa-plus" class="plus-icon"></i>
+          <i class="fas fa-plus" class="plus-icon" data-cy="todo-reveal-form"></i>
         </button>
 
-        <form id="add-todo-form" class="todo-reveal-form" action="">
+        <form id="add-todo-form" class="todo-form" action="">
 
-          <textarea id="todo-title-input" placeholder="Walk the dog..."></textarea>
+          <textarea id="title-input" data-cy="todo-title-input" placeholder="Walk the dog..."></textarea>
           <div class="date-submit-div">
-            <input type="date" id="todo-date-input">
-            <button id="save-todo-button" type="submit">Add todo</button>
+            <input type="date" data-cy="todo-date-input" id="date-input">
+            <button id="save-todo-button" data-cy="save-todo-button" type="submit">Add todo</button>
           </div>
 
         </form>
 
       </div>
 
-      <div id="todo-list-div" class="alltodos-div">
+      <div id="todo-list-div" class="alltodos-div" >
 
         <button id="show-todos-btn">
-          Visa alla todos
+          Mina todos
           <i class="fas fa-tasks" class="todo-icon"></i>
         </button>
 
         <div class="todo-list">
-          <ul id="todo-list" class="todo-reveal-list">
+          <ul id="todo-list" class="todo-reveal-list" data-cy="todo-list">
             <!-- här ska li skrivas ut -->
-            <li></li>
           </ul>
+          
         </div>
 
       </div>
