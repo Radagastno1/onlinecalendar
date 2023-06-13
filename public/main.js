@@ -13,4 +13,7 @@ function main() {
   //anropar funktioner från today
   presentDateAndTime();
   updateClock();
+  
+  //anropar funktioner från calendar.js
+  updateCalendarCells();
 }
