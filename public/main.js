@@ -1,17 +1,14 @@
-import { addEventListeners } from './todo.js';
-import { showAddTodoForm } from './todo.js';
-import { showListOfTodos } from './todo.js';
-import { renderTodoList } from './todo.js';
-import { presentDateAndTime } from './today.js';
-import { updateClock } from './today.js';
-
 document.addEventListener('DOMContentLoaded', main);
 
 function main() {
+  //anropar funktioner från todo
+  getDataFromLS();
   addEventListeners();
   showAddTodoForm();
   renderTodoList();
   showListOfTodos();
+
+  //anropar funktioner från today
   presentDateAndTime();
   updateClock();
 }

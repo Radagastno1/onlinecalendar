@@ -1,15 +1,17 @@
+document.addEventListener('DOMContentLoaded', main);
+
 let todoList = [];
 
-export function showAddTodoForm() {
+function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
   const addTodoForm = document.querySelector('#add-todo-form');
 
   addTodoButton.addEventListener('click', () => {
-    addTodoForm.classList.toggle('todo-reveal-form');
+    addTodoForm.classList.toggle('todo-form');
   });
 }
 
-export function showListOfTodos() {
+function showListOfTodos() {
   const showTodosButton = document.querySelector('#show-todos-btn');
   const todosUl = document.querySelector('#todo-list');
 
@@ -18,50 +20,55 @@ export function showListOfTodos() {
   });
 }
 
-export function addEventListeners() {
+function addEventListeners() {
   const saveButton = document.querySelector('#save-todo-button');
   saveButton.addEventListener('click', saveTodo);
 
 }
 
-export function renderTodoList() {
-  const todoUl = document.querySelector('#todo-list');
-
+function getDataFromLS(){
   if (localStorage.getItem('todoList')) {
     todoList = JSON.parse(localStorage.getItem('todoList'));
   }
+}
+
+function renderTodoList() {
+
+  const todoUl = document.querySelector('[data-cy="todo-list"]');
 
   todoUl.innerHTML = '';
 
   todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   let previousDate = null;
+  if (todoList.length > 0) {
+    for (const todo of todoList) {
+      if (todo.date !== previousDate) {
+        const title = document.createElement('h3');
+        title.textContent = todo.date ?? "Laddar datum...";
+        todoUl.appendChild(title);
+        previousDate = todo.date;
+      }
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.textContent = todo.title ?? "Laddar text...";
+      link.href = '#';
 
-  for (const todo of todoList) {
-    if (todo.date !== previousDate) {
-      const title = document.createElement('h3');
-      title.textContent = todo.date;
-      todoUl.appendChild(title);
+      link.addEventListener('click', () => {
+        showTodoPopup(todo);
+      });
+
+      li.appendChild(link);
+      todoUl.appendChild(li);
+
       previousDate = todo.date;
+
     }
-    const li = document.createElement('li');
-    const link = document.createElement('a');
-    link.textContent = todo.title;
-    link.href = '#';
-
-    link.addEventListener('click', () => {
-      showTodoPopup(todo);
-    });
-
-    li.appendChild(link);
-    todoUl.appendChild(li);
-
-    previousDate = todo.date;
   }
-  if (todoList.length == 0) {
-    const li = document.createElement('li');
-    li.textContent = "Det finns ingen todo än.."
-    todoUl.appendChild(li);
+  else {
+    const textLi = document.createElement('li');
+    textLi.textContent = "Det finns ingen todo än.."
+    todoUl.appendChild(textLi);
   }
 }
 
@@ -77,7 +84,7 @@ function showTodoPopup(todo) {
 
   const dateElement = document.createElement('h3');
   dateElement.classList.add('popup-date');
-  dateElement.textContent = todo.date;
+  dateElement.textContent = todo.date ?? "Laddar datum...";
 
   const icon = document.createElement('i');
   icon.classList.add('fa', 'fa-window-close');
@@ -86,10 +93,11 @@ function showTodoPopup(todo) {
 
   const title = document.createElement('h4');
   title.classList.add('popup-title');
-  title.textContent = todo.title;
+  title.textContent = todo.title ?? "Laddar text...";
 
   const removeButton = document.createElement('button');
   removeButton.classList.add('todo-remove-button');
+  removeButton.setAttribute('id', 'delete-todo-button');
   removeButton.textContent = 'Ta bort';
 
   popupHeader.appendChild(dateElement);
@@ -114,8 +122,10 @@ function showTodoPopup(todo) {
 }
 
 function saveTodo() {
-  const todoTitle = document.querySelector('#todo-title-input').value;
-  const todoDate = document.querySelector('#todo-date-input').value;
+  console.log("save anropas");
+  debugger;
+  const todoTitle = document.querySelector('#title-input').value;
+  const todoDate = document.querySelector('#date-input').value;
 
   if (todoTitle && todoDate > getTodaysDate()) {
     const todo = {
@@ -124,15 +134,15 @@ function saveTodo() {
     };
     todoList.push(todo);
     localStorage.setItem('todoList', JSON.stringify(todoList));
+    renderTodoList();
   }
-  renderTodoList();
 }
 
-function removeTodo(todo){
+function removeTodo(todo) {
   //hittar platsen i listan där referensen till todon finns
   const indexForTodo = todoList.findIndex(t => t === todo);
 
-  if(indexForTodo >= 0){
+  if (indexForTodo >= 0) {
     //tar bort en todo på den platsen i listan som den fanns på
     todoList.splice(indexForTodo, 1);
   }
@@ -145,9 +155,11 @@ function removeTodo(todo){
 
 }
 
-function closePopup(){
+function closePopup() {
   const popUpDiv = document.querySelector('.popup-div');
-  popUpDiv.remove();
+  if (popUpDiv !== null) {
+    popUpDiv.remove();
+  }
 }
 
 function getTodaysDate() {

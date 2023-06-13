@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', main);
+
 // var monthYearElement = document.querySelector('[data-cy="month-year"]');
 
 // var currentDate = new Date();

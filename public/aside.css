@@ -17,7 +17,7 @@ aside {
     height: calc(100% - 200px);
 }
 
-.todo-reveal-form {
+.todo-form {
     display: none;
 }
 
@@ -65,7 +65,7 @@ aside {
 }
 
 /* ska vara en klass för samma element som stylas istället ? */
-#todo-title-input {
+#todo-input {
     border-radius: 4px;
     margin-top: 20px;
     margin-left: 20px;
@@ -74,7 +74,7 @@ aside {
     resize: none;
 }
 
-#todo-date-input {
+#todo-input {
     margin-left: 20px;
     width: 130px;
     height: 30px;
@@ -102,7 +102,7 @@ aside {
     flex-wrap: wrap;
 }
 
-#todo-list li {
+.todo-list li {
     margin-bottom: 5px;
     padding: 5px;
     background-color: #f0f0f0;
@@ -110,7 +110,7 @@ aside {
     list-style: none;
 }
 
-#todo-list h3 {
+.todo-list h3 {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
