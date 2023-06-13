@@ -7,8 +7,7 @@ export function updateCalendarCells() {
 
     var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     var startingDay = (firstDayOfMonth.getDay() + 6) % 7;
-
-
+    
     var daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     var dayCounter = 1;
 
@@ -31,11 +30,9 @@ export function updateCalendarCells() {
 
                 dayCounter++;
             }
-
             cell.classList.add('calendar-cell');
             row.appendChild(cell);
         }
-
         calendarBody.appendChild(row);
     }
 }
