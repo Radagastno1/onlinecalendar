@@ -23,9 +23,19 @@ export function updateCalendarCells() {
                 cell.textContent = '';
             }else {
                 cell.textContent = dayCounter;
+
+                if (dayCounter === currentDay) {
+                    cell.classList.add('current-day');
+                }
+
+                dayCounter++;
             }
+
+            cell.classList.add('calendar-cell');
+            row.appendChild(cell);
         }
 
+        calendarBody.appendChild(row);
     }
 }
 

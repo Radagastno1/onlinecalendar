@@ -29,11 +29,17 @@ main {
     padding: 0 45px; 
 }
 
-[data-cy="calendar-cell"] {
+.calendar-cell.current-day {
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+.calendar-cell {
     border: 1px solid black;
     padding: 3.2vw 4vw;
     grid-column: span;
 }
+
 
 
 
