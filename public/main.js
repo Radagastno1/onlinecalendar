@@ -1,19 +1,19 @@
-import { addEventListeners } from './todo.js';
-import { showAddTodoForm } from './todo.js';
-import { showListOfTodos } from './todo.js';
-import { renderTodoList } from './todo.js';
-import { presentDateAndTime } from './today.js';
-import { updateClock } from './today.js';
-import { updateCalendarCells } from './calendar.js';
-
 document.addEventListener('DOMContentLoaded', main);
 
 function main() {
+  //anropar funktioner från todo
+  getDataFromLS();
   addEventListeners();
+  const todosUl = document.querySelector('#todo-list');
+  todosUl.classList.remove('todo-reveal-list');
   showAddTodoForm();
   renderTodoList();
   showListOfTodos();
+
+  //anropar funktioner från today
   presentDateAndTime();
   updateClock();
+  
+  //anropar funktioner från calendar.js
   updateCalendarCells();
 }

@@ -1,4 +1,6 @@
-export function updateCalendarCells() {
+
+document.addEventListener('DOMContentLoaded', main);
+function updateCalendarCells() {
     var calendarBody = document.getElementById('calendar-body');
     calendarBody.innerHTML = '';
 
