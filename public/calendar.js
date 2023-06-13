@@ -31,6 +31,7 @@ export function updateCalendarCells() {
 
                 dayCounter++;
             }
+            cell.classList.add('data-cy', 'calendar-cell-date');
             row.appendChild(cell);
         }
         calendarBody.appendChild(row);
