@@ -136,24 +136,30 @@ function showTodoPopup(todo) {
 }
 
 function saveTodo() {
-  console.log("save anropas");
-  debugger;
   const todoTitle = document.querySelector('#title-input').value;
   const todoDate = document.querySelector('#date-input').value;
 
-  if (todoTitle && todoDate > getTodaysDate()) {
+  if (todoTitle && todoDate >= getTodaysDate()) {
     const todo = {
       title: todoTitle,
       date: todoDate
     };
     todoList.push(todo);
+    const startTime = performance.now();
+
     localStorage.setItem('todoList', JSON.stringify(todoList));
     renderTodoList();
 
     const todosUl = document.querySelector('#todo-list');
     todosUl.classList.add('todo-reveal-list');
+
+    const endTime = performance.now(); 
+    const totalTime = endTime - startTime; 
+    console.log(`Tid för att uppdatera listan: ${totalTime} ms`);
+    debugger;
   }
 }
+
 
 function removeTodo(todo) {
   //hittar platsen i listan där referensen till todon finns
