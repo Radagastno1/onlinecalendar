@@ -134,6 +134,7 @@ function showTodoPopup(todo) {
   const editButton = document.createElement('button');
   editButton.classList.add('todo-edit-button');
   editButton.setAttribute('data-cy', 'edit-todo-button');
+  editButton.setAttribute('id', 'edit-button'); 
   editButton.textContent = 'Redigera';
 
 
@@ -217,21 +218,19 @@ function editTodo(todo){
   // popupTitleInput.add.classList('popup-title');
   popupTitleInput.value = todo.title;
 
-  const saveButton = document.createElement('button');
-  saveButton.classList.add('todo-edit-button');
-  saveButton.textContent = "Spara";
+  const popupEditButton = document.querySelector('#edit-button');
+  popupEditButton.textContent = "Spara";
 
   //hämtar elementet för titel och datum i popupen så jag kan byta ut dessa mot input-fält
   const divElement = document.querySelector('.popup-div');
   const popUpHeader = document.querySelector('.popup-header');
   const titleElement = document.querySelector('.popup-title');
   const dateElement = document.querySelector('.popup-date');
-  //hämtar även redigera knappen så den kan bli spara knappen
-  const popupEditButton = document.querySelector('.todo-edit-button');
+
 
   divElement.replaceChild(popupTitleInput, titleElement);
   popUpHeader.replaceChild(popupDateInput, dateElement);
-  divElement.replaceChild(popupEditButton, saveButton);
+  divElement.replaceChild(saveButton, editButton);
 
 }
 
