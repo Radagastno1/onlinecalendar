@@ -13,21 +13,22 @@ header {
     height: 8rem;
     position: fixed;
     top: 0;
-    background-color: rgb(184, 139, 85);
+    background-color: rgb(61, 55, 53);
     display: flex;
-   justify-content:center;
+    justify-content:center;
     align-items: center;
 }
 
 #header-items {
     display: flex;
+    color:rgb(255, 255, 255);
     margin-left: 300px;
 }
 
 #header-items button {
     margin: 0 200px;
     font-size: 20px;
-    color: black; 
+    color: rgb(255, 255, 255); 
     background-color: transparent; 
     border: none; 
     cursor: pointer; 

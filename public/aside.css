@@ -123,12 +123,13 @@ aside {
     top: 0;
     left: 0;
     display: flexbox;
-    height: 200px;
+    height: 127px;
     width: 350px;
     padding: 20px; 
     box-sizing: border-box; 
     font-family: "Helvetica", Arial, sans-serif;
     color: #ffffff;
+    background-color: #97797e;
   }
   
   .today-aside h3 {
