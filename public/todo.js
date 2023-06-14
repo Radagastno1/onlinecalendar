@@ -23,7 +23,6 @@ function showListOfTodos() {
 function addEventListeners() {
   const saveButton = document.querySelector('#save-todo-button');
   saveButton.addEventListener('click', saveTodo);
-
 }
 
 function getDataFromLS() {
@@ -79,8 +78,9 @@ function renderTodoList() {
       editIcon.classList.add('fas', 'fa-edit');
 
       editButton.addEventListener('click', () => {
-        editTodo(todo);
+        showTodoPopup(todo, true);
       });
+      
 
       editButton.appendChild(editIcon);
 
@@ -106,7 +106,7 @@ function renderTodoList() {
 // här skapas popup med element för varje gång man klickar på todo, finns bättre sätt
 // tex att ha en template i en html-fil som laddas in som mall för popup
 // men detta för att öva och förstå vad man kan göra med javascript
-function showTodoPopup(todo) {
+function showTodoPopup(todo, isEditMode) {
   const divElement = document.createElement('div');
   divElement.classList.add('popup-div');
 
@@ -163,6 +163,10 @@ function showTodoPopup(todo) {
   //lägger eventlyssnare här för att stänga popupen
   const closePopupIcon = document.querySelector('#popup-close-icon');
   closePopupIcon.addEventListener('click', closePopup);
+
+  if(isEditMode){
+    editTodo(todo);
+  }
 
 }
 
@@ -227,10 +231,8 @@ function editTodo(todo){
   const titleElement = document.querySelector('.popup-title');
   const dateElement = document.querySelector('.popup-date');
 
-
   divElement.replaceChild(popupTitleInput, titleElement);
   popUpHeader.replaceChild(popupDateInput, dateElement);
-  divElement.replaceChild(saveButton, editButton);
 
 }
 
