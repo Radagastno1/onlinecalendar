@@ -30,7 +30,7 @@ function getDataFromLS() {
   if (storedTodoList) {
     return JSON.parse(storedTodoList);
   }
-  else{
+  else {
     return [];
   }
 }
@@ -58,7 +58,7 @@ function renderTodoList() {
       const link = document.createElement('a');
       link.textContent = todo.title ?? "Laddar text...";
       link.href = '#';
-      
+
       // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
@@ -85,7 +85,7 @@ function renderTodoList() {
       editButton.addEventListener('click', () => {
         showTodoPopup(todo, true);
       });
-      
+
 
       editButton.appendChild(editIcon);
 
@@ -139,7 +139,7 @@ function showTodoPopup(todo, isEditMode) {
   const editButton = document.createElement('button');
   editButton.classList.add('todo-edit-button');
   editButton.setAttribute('data-cy', 'edit-todo-button');
-  editButton.setAttribute('id', 'edit-button'); 
+  editButton.setAttribute('id', 'edit-button');
   editButton.textContent = 'Redigera';
 
 
@@ -160,7 +160,7 @@ function showTodoPopup(todo, isEditMode) {
   editButton.addEventListener('click', () => {
     editTodo(todo);
   });
-  
+
 
   //och här sätts hela popupen som barn till DOMen
   document.body.appendChild(divElement);
@@ -169,7 +169,7 @@ function showTodoPopup(todo, isEditMode) {
   const closePopupIcon = document.querySelector('#popup-close-icon');
   closePopupIcon.addEventListener('click', closePopup);
 
-  if(isEditMode){
+  if (isEditMode) {
     editTodo(todo);
   }
 
@@ -194,10 +194,14 @@ function saveTodo() {
   }
 }
 
-function saveTodoToLS(todo){
+function saveTodoToLS(todo) {
   const todos = getDataFromLS();
   todos.push(todo);
   localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function updateTodoToLS() {
+  localStorage.setItem('todos', JSON.stringify(todoList));
 }
 
 function removeTodo(todo) {
@@ -217,17 +221,30 @@ function removeTodo(todo) {
 
 }
 
-function editTodo(todo){
+function editTodo(todo) {
+
   const popupDateInput = document.createElement('input');
   // popupDateInput.add.classList('popup-date');
+  popupDateInput.setAttribute('id', 'todo-date-input');
+  // popupDateInput.setAttribute('data-cy', 'todo-date-input');
+  popupDateInput.setAttribute('type', 'date');
   popupDateInput.value = todo.date;
 
   const popupTitleInput = document.createElement('input');
   // popupTitleInput.add.classList('popup-title');
+  popupTitleInput.setAttribute('id', 'todo-title-input');
+  // popupTitleInput.setAttribute('data-cy', 'todo-title-input');
   popupTitleInput.value = todo.title;
 
   const popupEditButton = document.querySelector('#edit-button');
   popupEditButton.textContent = "Spara";
+
+  if(popupEditButton.textContent === "Spara"){
+    popupEditButton.addEventListener('click', function() {
+      updateTodo(todo);
+      closePopup();
+    });
+  }  
 
   //hämtar elementet för titel och datum i popupen så jag kan byta ut dessa mot input-fält
   const divElement = document.querySelector('.popup-div');
@@ -238,6 +255,17 @@ function editTodo(todo){
   divElement.replaceChild(popupTitleInput, titleElement);
   popUpHeader.replaceChild(popupDateInput, dateElement);
 
+
+}
+
+function updateTodo(todo) {
+  const indexOfTodo = todoList.indexOf(todo);
+
+  todoList[indexOfTodo].date = document.querySelector('#todo-date-input').value;
+  todoList[indexOfTodo].title = document.querySelector('#todo-title-input').value;
+
+  updateTodoToLS();
+  renderTodoList(); 
 }
 
 function closePopup() {
