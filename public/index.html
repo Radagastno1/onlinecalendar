@@ -6,10 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <script src="main.js"></script>
-  <script src="calendar.js"></script>
-  <script src="todo.js"></script>
-  <script src="today.js"></script>
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="aside.css">
@@ -22,13 +18,14 @@
   <header>
     <div id="header-items">
 
-      <button data-cy="prev-month" onclick="changeMonth(-1)" title="Förgående månad">
+      <button data-cy="prev-month" title="Förgående månad">
         <i class="fas fa-chevron-left"></i> 
       </button>
-        <h2 data-cy="month-year">Juni 2023</h2>
-      <button data-cy="next-month" onclick="changeMonth(1)" title="Nästa månad">
+      <h2 data-cy="month-year">Juni 2023</h2>
+      <button data-cy="next-month" title="Nästa månad">
         <i class="fas fa-chevron-right"></i>
       </button>
+      
 
     </div>
   </header>
@@ -150,6 +147,10 @@
     </div>
 
   </main>
+  <script src="main.js"></script>
+  <script src="calendar.js"></script>
+  <script src="todo.js"></script>
+  <script src="today.js"></script>
 </body>
 
 </html>
