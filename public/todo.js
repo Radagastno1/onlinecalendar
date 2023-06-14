@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', main);
 
 let todoList = [];
+let popupElement;
 
 function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
@@ -83,7 +84,7 @@ function renderTodoList() {
       editIcon.classList.add('fas', 'fa-edit');
 
       editButton.addEventListener('click', () => {
-        showTodoPopup(todo, true);
+        editTodoPopUp(todo);
       });
 
 
@@ -111,7 +112,7 @@ function renderTodoList() {
 // här skapas popup med element för varje gång man klickar på todo, finns bättre sätt
 // tex att ha en template i en html-fil som laddas in som mall för popup
 // men detta för att öva och förstå vad man kan göra med javascript
-function showTodoPopup(todo, isEditMode) {
+function showTodoPopup(todo) {
   const divElement = document.createElement('div');
   divElement.classList.add('popup-div');
 
@@ -158,7 +159,7 @@ function showTodoPopup(todo, isEditMode) {
   });
 
   editButton.addEventListener('click', () => {
-    editTodo(todo);
+    editTodoPopUp(todo);
   });
 
 
@@ -168,11 +169,6 @@ function showTodoPopup(todo, isEditMode) {
   //lägger eventlyssnare här för att stänga popupen
   const closePopupIcon = document.querySelector('#popup-close-icon');
   closePopupIcon.addEventListener('click', closePopup);
-
-  if (isEditMode) {
-    editTodo(todo);
-  }
-
 }
 
 function saveTodo() {
@@ -221,51 +217,93 @@ function removeTodo(todo) {
 
 }
 
-function editTodo(todo) {
+function editTodoPopUp(todo) {
+
+  const titleInputStatic = document.querySelector('[data-cy="todo-title-input"]');
+  const dateInputStatic = document.querySelector('[data-cy="todo-date-input"]');
+  const saveButtonStatic = document.querySelector('[data-cy="save-todo-button"]');
+
+  console.log(titleInputStatic, dateInputStatic, saveButtonStatic);
+  debugger;
+
+  titleInputStatic.removeAttribute('data-cy');
+  dateInputStatic.removeAttribute('data-cy');
+  saveButtonStatic.removeAttribute('data-cy');
+
+  const divElement = document.createElement('div');
+  divElement.classList.add('popup-div');
+
+  const popupHeader = document.createElement('div');
+  popupHeader.classList.add('popup-header');
+
+  const icon = document.createElement('i');
+  icon.classList.add('fa', 'fa-window-close');
+  icon.setAttribute('aria-hidden', 'true');
+  icon.setAttribute('id', 'popup-close-icon');
+
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('todo-remove-button');
+  removeButton.setAttribute('data-cy', 'delete-todo-button');
+  removeButton.textContent = 'Ta bort';
 
   const popupDateInput = document.createElement('input');
-  // popupDateInput.add.classList('popup-date');
-  popupDateInput.setAttribute('id', 'todo-date-input');
-  // popupDateInput.setAttribute('data-cy', 'todo-date-input');
+  popupDateInput.setAttribute('data-cy', 'todo-date-input');
   popupDateInput.setAttribute('type', 'date');
   popupDateInput.value = todo.date;
 
   const popupTitleInput = document.createElement('input');
-  // popupTitleInput.add.classList('popup-title');
-  popupTitleInput.setAttribute('id', 'todo-title-input');
-  // popupTitleInput.setAttribute('data-cy', 'todo-title-input');
+  popupTitleInput.setAttribute('data-cy', 'todo-title-input');
   popupTitleInput.value = todo.title;
 
-  const popupEditButton = document.querySelector('#edit-button');
-  popupEditButton.textContent = "Spara";
+  const popupSaveButton = document.createElement('button');
+  popupSaveButton.setAttribute('data-cy', 'save-todo-button');
+  popupSaveButton.textContent = "Spara";
 
-  if(popupEditButton.textContent === "Spara"){
-    popupEditButton.addEventListener('click', function() {
-      updateTodo(todo);
-      closePopup();
-    });
-  }  
+  removeButton.addEventListener('click', () => {
+    removeTodo(todo);
+  });
 
-  //hämtar elementet för titel och datum i popupen så jag kan byta ut dessa mot input-fält
-  const divElement = document.querySelector('.popup-div');
-  const popUpHeader = document.querySelector('.popup-header');
-  const titleElement = document.querySelector('.popup-title');
-  const dateElement = document.querySelector('.popup-date');
+  popupSaveButton.addEventListener('click', () => {
+    updateTodo(todo);
+    closePopup();
+  });
 
-  divElement.replaceChild(popupTitleInput, titleElement);
-  popUpHeader.replaceChild(popupDateInput, dateElement);
+  icon.addEventListener('click', () => {
+    closePopup();
+  });
 
+  popupHeader.appendChild(popupDateInput);
+  popupHeader.appendChild(icon);
+
+  //här sätter jag de olika elementen till själva popupen
+  divElement.appendChild(popupHeader);
+  divElement.appendChild(popupTitleInput);
+  divElement.appendChild(removeButton);
+  divElement.appendChild(popupSaveButton);
+
+  document.body.appendChild(divElement);
 
 }
 
 function updateTodo(todo) {
   const indexOfTodo = todoList.indexOf(todo);
 
-  todoList[indexOfTodo].date = document.querySelector('#todo-date-input').value;
-  todoList[indexOfTodo].title = document.querySelector('#todo-title-input').value;
+  const dateInputPopup = document.querySelector('.popup-div [data-cy="todo-date-input"]');
+  const titleInputPopup = document.querySelector('.popup-div [data-cy="todo-title-input"]');
+
+  todoList[indexOfTodo].date = dateInputPopup.value;
+  todoList[indexOfTodo].title = titleInputPopup.value;
+
+  //återställer attriuten från andra formuläret
+  const titleInputStatic = document.querySelector('#title-input');
+  const dateInputStatic = document.querySelector('#date-input');
+  const saveButtonStatic = document.querySelector('#save-todo-button');
+  titleInputStatic.setAttribute('data-cy', 'todo-title-input');
+  dateInputStatic.setAttribute('data-cy', 'todo-date-input');
+  saveButtonStatic.setAttribute('data-cy', 'save-todo-button');
 
   updateTodoToLS();
-  renderTodoList(); 
+  renderTodoList();
 }
 
 function closePopup() {
