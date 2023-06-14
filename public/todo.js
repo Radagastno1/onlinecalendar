@@ -186,7 +186,6 @@ function saveTodo() {
     };
     todoList.push(todo);
 
-    // localStorage.setItem('todos', JSON.stringify(todoList));
     saveTodoToLS(todo);
     renderTodoList();
 
@@ -210,7 +209,7 @@ function removeTodo(todo) {
     todoList.splice(indexForTodo, 1);
   }
   //sätter den nya listan i localstorage
-  localStorage.setItem('todoList', JSON.stringify(todoList));
+  localStorage.setItem('todos', JSON.stringify(todoList));
 
   closePopup();
 
