@@ -54,19 +54,35 @@ function renderTodoList() {
       const link = document.createElement('a');
       link.textContent = todo.title ?? "Laddar text...";
       link.href = '#';
-
+      
+      // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
       removeButton.setAttribute('data-cy', 'delete-todo-button');
-
-      const removeIcon = document.createElement('i');
-      removeIcon.classList.add('fas', 'fa-trash-alt');
 
       removeButton.addEventListener('click', () => {
         removeTodo(todo);
       });
 
+      const removeIcon = document.createElement('i');
+      removeIcon.classList.add('fas', 'fa-trash-alt');
+
       removeButton.appendChild(removeIcon);
+
+      // redigera knapp
+
+      const editButton = document.createElement('button');
+      editButton.classList.add('todo-edit-button');
+      editButton.setAttribute('data-cy', 'edit-todo-button');
+
+      const editIcon = document.createElement('i');
+      editIcon.classList.add('fas', 'fa-edit');
+
+      editButton.addEventListener('click', () => {
+        editTodo(todo);
+      });
+
+      editButton.appendChild(editIcon);
 
       link.addEventListener('click', () => {
         showTodoPopup(todo);
@@ -74,6 +90,7 @@ function renderTodoList() {
 
       li.appendChild(link);
       li.appendChild(removeButton);
+      li.appendChild(editButton);
       todoUl.appendChild(li);
 
       previousDate = todo.date;
@@ -114,6 +131,12 @@ function showTodoPopup(todo) {
   removeButton.setAttribute('data-cy', 'delete-todo-button');
   removeButton.textContent = 'Ta bort';
 
+  const editButton = document.createElement('button');
+  editButton.classList.add('todo-edit-button');
+  editButton.setAttribute('data-cy', 'edit-todo-button');
+  editButton.textContent = 'Redigera';
+
+
   popupHeader.appendChild(dateElement);
   popupHeader.appendChild(icon);
 
@@ -121,10 +144,17 @@ function showTodoPopup(todo) {
   divElement.appendChild(popupHeader);
   divElement.appendChild(title);
   divElement.appendChild(removeButton);
+  divElement.appendChild(editButton);
+
 
   removeButton.addEventListener('click', () => {
     removeTodo(todo);
   });
+
+  editButton.addEventListener('click', () => {
+    editTodo(todo);
+  });
+  
 
   //och här sätts hela popupen som barn till DOMen
   document.body.appendChild(divElement);
@@ -153,8 +183,8 @@ function saveTodo() {
     const todosUl = document.querySelector('#todo-list');
     todosUl.classList.add('todo-reveal-list');
 
-    const endTime = performance.now(); 
-    const totalTime = endTime - startTime; 
+    const endTime = performance.now();
+    const totalTime = endTime - startTime;
     console.log(`Tid för att uppdatera listan: ${totalTime} ms`);
     debugger;
   }
@@ -175,6 +205,33 @@ function removeTodo(todo) {
   closePopup();
 
   renderTodoList();
+
+}
+
+function editTodo(todo){
+  const popupDateInput = document.createElement('input');
+  // popupDateInput.add.classList('popup-date');
+  popupDateInput.value = todo.date;
+
+  const popupTitleInput = document.createElement('input');
+  // popupTitleInput.add.classList('popup-title');
+  popupTitleInput.value = todo.title;
+
+  const saveButton = document.createElement('button');
+  saveButton.classList.add('todo-edit-button');
+  saveButton.textContent = "Spara";
+
+  //hämtar elementet för titel och datum i popupen så jag kan byta ut dessa mot input-fält
+  const divElement = document.querySelector('.popup-div');
+  const popUpHeader = document.querySelector('.popup-header');
+  const titleElement = document.querySelector('.popup-title');
+  const dateElement = document.querySelector('.popup-date');
+  //hämtar även redigera knappen så den kan bli spara knappen
+  const popupEditButton = document.querySelector('.todo-edit-button');
+
+  divElement.replaceChild(popupTitleInput, titleElement);
+  popUpHeader.replaceChild(popupDateInput, dateElement);
+  divElement.replaceChild(popupEditButton, saveButton);
 
 }
 
