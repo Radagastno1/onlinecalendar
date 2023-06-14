@@ -26,10 +26,15 @@ function addEventListeners() {
 }
 
 function getDataFromLS() {
-  if (localStorage.getItem('todoList')) {
-    todoList = JSON.parse(localStorage.getItem('todoList'));
+  const storedTodoList = localStorage.getItem('todos');
+  if (storedTodoList) {
+    return JSON.parse(storedTodoList);
+  }
+  else{
+    return [];
   }
 }
+
 
 function renderTodoList() {
 
@@ -37,10 +42,10 @@ function renderTodoList() {
 
   todoUl.innerHTML = '';
 
-  todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   let previousDate = null;
   if (todoList.length > 0) {
+    todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
     for (const todo of todoList) {
       if (todo.date !== previousDate) {
         const title = document.createElement('h3');
@@ -180,21 +185,21 @@ function saveTodo() {
       date: todoDate
     };
     todoList.push(todo);
-    const startTime = performance.now();
 
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    // localStorage.setItem('todos', JSON.stringify(todoList));
+    saveTodoToLS(todo);
     renderTodoList();
 
     const todosUl = document.querySelector('#todo-list');
     todosUl.classList.add('todo-reveal-list');
-
-    const endTime = performance.now();
-    const totalTime = endTime - startTime;
-    console.log(`Tid för att uppdatera listan: ${totalTime} ms`);
-    debugger;
   }
 }
 
+function saveTodoToLS(todo){
+  const todos = getDataFromLS();
+  todos.push(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
 
 function removeTodo(todo) {
   //hittar platsen i listan där referensen till todon finns
