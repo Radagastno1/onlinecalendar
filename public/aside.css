@@ -172,7 +172,7 @@ aside {
     display: flex;
   }
 
-  .todo-remove-button{
+  .todo-remove-button, .todo-edit-button, .todo-save-button{
     background-color: transparent;
     border-radius: 5px;
     border-color: #807e7e;
