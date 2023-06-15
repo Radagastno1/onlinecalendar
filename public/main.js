@@ -25,12 +25,12 @@ function main() {
 //   });
 // });
 
-const calendarBody = document.getElementById('calendar-body');
-calendarBody.addEventListener('click', event => {
-  if (event.target.matches("[data-cy='calendar-cell']")) {
-    filterTodoByCalendarCell(event);
-  }
-});
+// const calendarBody = document.getElementById('calendar-body');
+// calendarBody.addEventListener('click', event => {
+//   if (event.target.matches("[data-cy='calendar-cell']")) {
+//     filterTodoByCalendarCell(event);
+//   }
+// });
 
 
 }

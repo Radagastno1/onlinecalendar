@@ -18,6 +18,16 @@ function initCalendar() {
 
   updateCalendarCells();
 
+  addCalendarCellListeners();
+}
+
+function addCalendarCellListeners() {
+  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+  calendarCells.forEach(calendarCell => {
+    calendarCell.addEventListener('click', event => {
+      filterTodoByCalendarCell(event);
+    });
+  });
 }
 
 function changeMonth(change) {
@@ -107,7 +117,7 @@ function updateCalendarCells() {
     }
 
     calendarBody.appendChild(row);
-
+    addCalendarCellListeners() ;
   }
 }
 
