@@ -73,10 +73,10 @@ function updateCalendarCells() {
   var currentDate = new Date();
   var currentDay = currentDate.getDate();
 
-  var firstDayOfMonth = new Date(year, month - 1, 1);
+  var firstDayOfMonth = new Date(year, month, 1);
   var startingDay = (firstDayOfMonth.getDay() + 6) % 7;
 
-  var daysInMonth = new Date(year, month, 0).getDate();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
   var dayCounter = 1;
 
   for (var i = 0; i < 6; i++) {
@@ -91,19 +91,25 @@ function updateCalendarCells() {
       } else if (dayCounter > daysInMonth) {
         cell.textContent = '';
       } else {
-        cell.textContent = dayCounter;
+        var dateElement = document.createElement('span');
+        dateElement.textContent = dayCounter;
+        dateElement.setAttribute('data-cy', 'calendar-cell-date');
+        cell.appendChild(dateElement);
 
-        if (dayCounter === currentDay && month === currentDate.getMonth() + 1 && year == currentDate.getFullYear()) {
+        if (dayCounter === currentDay && month === currentDate.getMonth() && year == currentDate.getFullYear()) {
           cell.classList.add('current-day');
         }
 
         dayCounter++;
       }
 
-      cell.classList.add('data-cy', 'calendar-cell-date');
       row.appendChild(cell);
     }
 
     calendarBody.appendChild(row);
+
   }
 }
+
+
+

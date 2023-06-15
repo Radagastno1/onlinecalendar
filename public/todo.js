@@ -230,9 +230,6 @@ function editTodoPopUp(todo) {
   const dateInputStatic = document.querySelector('[data-cy="todo-date-input"]');
   const saveButtonStatic = document.querySelector('[data-cy="save-todo-button"]');
 
-  console.log(titleInputStatic, dateInputStatic, saveButtonStatic);
-  debugger;
-
   titleInputStatic.removeAttribute('data-cy');
   dateInputStatic.removeAttribute('data-cy');
   saveButtonStatic.removeAttribute('data-cy');
@@ -325,9 +322,9 @@ function filterTodoByCalendarCell(event) {
   const calendarCell = event.target;
   const day = calendarCell.textContent;
   const { month, year } = state;
-  const adjustedMonth = month + 1; // Justera månadsvärdet
+  const adjustedMonth = month + 1; // justerar månadsvärdet sålänge då det är fel
   const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
+  
   console.log(date);
   debugger;
   // och rendera en lista med endast de todos som har det datumet
