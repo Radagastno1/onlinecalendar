@@ -57,7 +57,14 @@ function renderTodoList() {
       }
       const li = document.createElement('li');
       const link = document.createElement('a');
-      link.textContent = todo.title ?? "Laddar text...";
+      link.classList.add('todo-link');
+
+      const p = document.createElement('p');
+      p.textContent = todo.date ?? "Laddar datum";
+      p.classList.add('todo-date-p');
+      
+      link.textContent = p.textContent + ' ';
+      link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
 
       // ta bort knapp
