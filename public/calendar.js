@@ -1,6 +1,10 @@
-document.addEventListener('DOMContentLoaded', main);
+const state = {
+  selectedDate: null,
+  year: new Date().getFullYear(),
+  month: new Date().getMonth(),
+}
 
-function main() {
+function initCalendar() {
   var prevMonthButton = document.querySelector("[data-cy='prev-month']");
   var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
@@ -16,17 +20,24 @@ function main() {
 }
 
 function changeMonth(change) {
-  var monthYearElement = document.querySelector("[data-cy='month-year']");
-  var [month, year] = monthYearElement.textContent.split(' ');
-  month = getMonthNumber(month);
+  const { month, year } = state;
 
-  var newDate = new Date(year, month - 1 + change, 1);
-  var newMonth = newDate.toLocaleString('default', { month: 'long' });
-  var newYear = newDate.getFullYear();
-  newMonth = capitalizeFirstLetter(newMonth);
-  monthYearElement.textContent = newMonth + ' ' + newYear;
-
+  var newDate = new Date(year, month + change, 1);
+  state.month = newDate.getMonth();
+  state.year = newDate.getFullYear();
+  
   updateCalendarCells();
+  updateCalendarMonthLabel();
+}
+
+function updateCalendarMonthLabel() {
+  const { month, year } = state;
+  const date = new Date(year, month, 1);
+  var monthString = date.toLocaleString('default', { month: 'long' });
+  monthString = capitalizeFirstLetter(monthString);
+  
+  const monthYearElement = document.getElementById('month-year');
+  monthYearElement.textContent = monthString + ' ' + year;
 }
 
 function capitalizeFirstLetter(string) {
@@ -56,9 +67,7 @@ function updateCalendarCells() {
   var calendarBody = document.getElementById('calendar-body');
   calendarBody.innerHTML = '';
 
-  var monthYearElement = document.querySelector("[data-cy='month-year']");
-  var [month, year] = monthYearElement.textContent.split(' ');
-  month = getMonthNumber(month);
+  const { month, year } = state;
 
   var currentDate = new Date();
   var currentDay = currentDate.getDate();

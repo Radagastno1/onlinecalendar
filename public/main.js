@@ -15,5 +15,5 @@ function main() {
   updateClock();
   
   //anropar funktioner från calendar.js
-  updateCalendarCells();
+  initCalendar();
 }
