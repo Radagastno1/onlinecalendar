@@ -6,6 +6,7 @@ function main() {
   addEventListeners();
   const todosUl = document.querySelector('#todo-list');
   todosUl.classList.remove('todo-reveal-list');
+  
   showAddTodoForm();
   renderTodoList();
   showListOfTodos();
@@ -16,4 +17,12 @@ function main() {
   
   //anropar funktioner från calendar.js
   initCalendar();
+  
+  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+calendarCells.forEach(calendarCell => {
+  calendarCell.addEventListener('click', event => {
+    filterTodoByCalendarCell(event);
+  });
+});
+
 }

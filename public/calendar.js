@@ -8,15 +8,16 @@ function initCalendar() {
   var prevMonthButton = document.querySelector("[data-cy='prev-month']");
   var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
-  prevMonthButton.addEventListener('click', function() {
+  prevMonthButton.addEventListener('click', function () {
     changeMonth(-1);
   });
 
-  nextMonthButton.addEventListener('click', function() {
+  nextMonthButton.addEventListener('click', function () {
     changeMonth(1);
   });
 
   updateCalendarCells();
+
 }
 
 function changeMonth(change) {
@@ -25,7 +26,7 @@ function changeMonth(change) {
   var newDate = new Date(year, month + change, 1);
   state.month = newDate.getMonth();
   state.year = newDate.getFullYear();
-  
+
   updateCalendarCells();
   updateCalendarMonthLabel();
 }
@@ -35,7 +36,7 @@ function updateCalendarMonthLabel() {
   const date = new Date(year, month, 1);
   var monthString = date.toLocaleString('default', { month: 'long' });
   monthString = capitalizeFirstLetter(monthString);
-  
+
   const monthYearElement = document.getElementById('month-year');
   monthYearElement.textContent = monthString + ' ' + year;
 }

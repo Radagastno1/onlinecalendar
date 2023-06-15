@@ -62,7 +62,7 @@ function renderTodoList() {
       const p = document.createElement('p');
       p.textContent = todo.date ?? "Laddar datum";
       p.classList.add('todo-date-p');
-      
+
       link.textContent = p.textContent + ' ';
       link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
@@ -319,6 +319,99 @@ function closePopup() {
   if (popUpDiv !== null) {
     popUpDiv.remove();
   }
+}
+
+function filterTodoByCalendarCell(event) {
+  const calendarCell = event.target;
+  const day = calendarCell.textContent;
+  const { month, year } = state;
+  const adjustedMonth = month + 1; // Justera månadsvärdet
+  const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+  console.log(date);
+  debugger;
+  // och rendera en lista med endast de todos som har det datumet
+  const filteredTodos = todoList.filter(todo => todo.date === date);
+  renderFilteredTodoList(filteredTodos);
+}
+
+function renderFilteredTodoList(filteredTodos) {
+
+    const todoUl = document.querySelector('[data-cy="todo-list"]');
+
+    todoUl.innerHTML = '';
+
+    let previousDate = null;
+    if (filteredTodos.length > 0) {
+      filteredTodos.sort((a, b) => new Date(a.date) - new Date(b.date));
+      for (const todo of filteredTodos) {
+        if (todo.date !== previousDate) {
+          const title = document.createElement('h3');
+          title.textContent = todo.date ?? "Laddar datum...";
+          todoUl.appendChild(title);
+          previousDate = todo.date;
+
+        }
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.classList.add('todo-link');
+
+        const p = document.createElement('p');
+        p.textContent = todo.date ?? "Laddar datum";
+        p.classList.add('todo-date-p');
+
+        link.textContent = p.textContent + ' ';
+        link.textContent += todo.title ?? "Laddar text...";
+        link.href = '#';
+
+        // ta bort knapp
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('todo-remove-button');
+        removeButton.setAttribute('data-cy', 'delete-todo-button');
+
+        removeButton.addEventListener('click', () => {
+          removeTodo(todo);
+        });
+
+        const removeIcon = document.createElement('i');
+        removeIcon.classList.add('fas', 'fa-trash-alt');
+
+        removeButton.appendChild(removeIcon);
+
+        // redigera knapp
+
+        const editButton = document.createElement('button');
+        editButton.classList.add('todo-edit-button');
+        editButton.setAttribute('data-cy', 'edit-todo-button');
+
+        const editIcon = document.createElement('i');
+        editIcon.classList.add('fas', 'fa-edit');
+
+        editButton.addEventListener('click', () => {
+          editTodoPopUp(todo);
+        });
+
+
+        editButton.appendChild(editIcon);
+
+        link.addEventListener('click', () => {
+          showTodoPopup(todo);
+        });
+
+        li.appendChild(link);
+        li.appendChild(removeButton);
+        li.appendChild(editButton);
+        todoUl.appendChild(li);
+
+        previousDate = todo.date;
+      }
+    }
+    else {
+      const textLi = document.createElement('li');
+      textLi.textContent = "Det finns ingen todo än.."
+      todoUl.appendChild(textLi);
+    }
+
 }
 
 function getTodaysDate() {
