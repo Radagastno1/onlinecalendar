@@ -256,6 +256,7 @@ function editTodoPopUp(todo) {
   popupTitleInput.value = todo.title;
 
   const popupSaveButton = document.createElement('button');
+  popupSaveButton.classList.add('todo-save-button');
   popupSaveButton.setAttribute('data-cy', 'save-todo-button');
   popupSaveButton.textContent = "Spara";
 
