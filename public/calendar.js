@@ -32,7 +32,7 @@ function changeMonth(change) {
 
 function updateCalendarMonthLabel() {
   const { month, year } = state;
-  const date = new Date(year, month, 1);
+  const date = new Date(year, month, 0);
   var monthString = date.toLocaleString('default', { month: 'long' });
   monthString = capitalizeFirstLetter(monthString);
   
