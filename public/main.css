@@ -38,9 +38,14 @@ main {
     border: 1px solid black;
     padding: 3.2vw 4vw;
     grid-column: span;
+    cursor: pointer;
+}
+[data-cy="calendar-cell"]:hover{
+    background-color: pink;
 }
 
 
+  
 
 
 
