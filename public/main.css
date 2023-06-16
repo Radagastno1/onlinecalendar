@@ -44,6 +44,19 @@ main {
     background-color: pink;
 }
 
+[data-cy="calendar-cell"] {
+    position: relative;
+  }
+  
+  [data-cy="calendar-cell-todos"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-style:italic;
+    font-weight:bolder;
+  }
+  
+
 
   
 
