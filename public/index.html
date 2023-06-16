@@ -43,7 +43,7 @@
 
     <div class="todo-aside">
 
-      <button class="widen-button">Förstora</button>
+      <button class="shrink-button">Förminska</button>
 
       <div class="add-todo-div">
 
@@ -155,11 +155,11 @@
   <script src="today.js"></script>
 
   <script>
-   var widenButton = document.querySelector(".widen-button");
+   var shrinkButton = document.querySelector(".shrink-button");
 var asideElement = document.querySelector("aside");
 
-widenButton.addEventListener("click", function () {
-  asideElement.classList.toggle("widen");
+shrinkButton.addEventListener("click", function () {
+  asideElement.classList.toggle("shrink");
 });
 
   </script>
