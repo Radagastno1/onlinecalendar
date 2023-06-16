@@ -50,6 +50,18 @@ main {
     background-color: pink;
 }
 
+[data-cy="calendar-cell"] {
+    position: relative;
+  }
+  
+  [data-cy="calendar-cell-todos"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-style:italic;
+    font-weight:bolder;
+  }
+  
 
 
 @media (max-width: 1024px) {
@@ -126,19 +138,5 @@ main {
         padding: 0 15px;
         /* Uppdatera padding för att justera bredden */
     }
-
-[data-cy="calendar-cell"] {
-    position: relative;
-  }
-  
-  [data-cy="calendar-cell-todos"] {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-style:italic;
-    font-weight:bolder;
-  }
-  
-
 
 }
