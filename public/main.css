@@ -1,8 +1,22 @@
-body{
-    height: 100%;
-    width: 100%;
-    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+html {
+    height: 100%;
+    max-width: 100%;
+}
+
+body {
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
 main {
     justify-content: center;
     margin-left:350px;
@@ -21,6 +35,16 @@ main {
     padding: 0 10px;
     zoom: 0.8;
     overflow: auto;
+}
+
+@media (max-width: 1024px) {
+    #calendar-table {
+        flex-shrink: -1;
+        justify-content: center;
+        font-size: 15px;
+        padding: 0 5px;
+        zoom: 0.8;
+    }
 }
 
 .day {

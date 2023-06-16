@@ -117,7 +117,7 @@ function updateCalendarCells() {
     }
 
     calendarBody.appendChild(row);
-    addCalendarCellListeners() ;
+
   }
 }
 

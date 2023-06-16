@@ -1,212 +1,316 @@
 aside {
-    background-color: rgb(235, 186, 186);
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flexbox;
-    height: 100%;
-    width: 350px;
+  background-color: rgb(235, 186, 186);
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flexbox;
+  height: 100%;
+  width: 350px;
+  transition: width 0.3s ease-in-out; /* Lägg till övergångseffekt */
+  overflow: hidden;  /* för att dölja när mindre */
 }
 
 .todo-aside {
-    background-color: azure;
-    margin-top: 200px;
-    height: calc(100% - 200px);
+  background-color: azure;
+  margin-top: 200px;
+  height: calc(100% - 200px);
 }
 
 .todo-form {
-    display: none;
+  display: none;
 }
 
 .plus-icon {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 #add-todo-btn {
-    background-color: rgb(48, 137, 238);
+  background-color: rgb(48, 137, 238);
 }
 
 #add-todo-btn,
 #show-todos-btn {
-    padding: 4px;
-    color: aliceblue;
-    border: none;
-    border-radius: 2px;
-    height: 50px;
-    width: 280px;
-    letter-spacing: 2px;
-    font-size: 14px;
-    font-family: "Helvetica", Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  padding: 4px;
+  color: aliceblue;
+  border: none;
+  border-radius: 2px;
+  height: 50px;
+  width: 280px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-family: "Helvetica", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .date-submit-div {
-    width: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #save-todo-button {
-    padding: 4px;
-    color: aliceblue;
-    background-color: rgb(48, 137, 238);
-    font-family: "Helvetica", Arial, sans-serif;
-    letter-spacing: 2px;
-    border: none;
-    border-radius: 2px;
-    height: 30px;
-    font-size: 10px;
+  padding: 4px;
+  color: aliceblue;
+  background-color: rgb(48, 137, 238);
+  font-family: "Helvetica", Arial, sans-serif;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 2px;
+  height: 30px;
+  font-size: 10px;
 }
 
 /* ska vara en klass för samma element som stylas istället ? */
 #todo-input {
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-left: 20px;
-    height: 80px;
-    width: 240px;
-    resize: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 80px;
+  width: 240px;
+  resize: none;
 }
 
 #todo-input {
-    margin-left: 20px;
-    width: 130px;
-    height: 30px;
+  margin-left: 20px;
+  width: 130px;
+  height: 30px;
 }
 
 .todo-reveal-list {
-    display: none;
+  display: none;
 }
 
 .alltodos-div {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #show-todos-btn {
-    background-color: darkseagreen;
+  background-color: darkseagreen;
 }
 
 .todo-list {
-    font-family: "Helvetica", Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    margin-left: 20px;
-    height: 200px;
-    overflow: auto;
-    flex-wrap: wrap;
+  font-family: "Helvetica", Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  height: 200px;
+  overflow: auto;
+  flex-wrap: wrap;
 }
 
 .todo-list li {
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    list-style: none;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  list-style: none;
 }
 
 .todo-list h3 {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .today-aside {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flexbox;
+  height: 127px;
+  width: 350px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "Helvetica", Arial, sans-serif;
+  color: #ffffff;
+  background-color: #97797e;
+}
+
+.today-aside h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.today-aside p {
+  background-color: rgb(238, 236, 234);
+  opacity: 0.8;
+  font-family: "Helvetica", Arial, sans-serif;
+  color: #484848;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 0;
+}
+
+.popup-div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 192, 203, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-header {
+  display: flex;
+}
+
+.todo-remove-button,
+.todo-edit-button,
+.todo-save-button {
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: #807e7e;
+  margin-top: 5px;
+  padding: 4px;
+  font-size: 15px;
+  color: #555;
+}
+
+.fa.fa-window-close {
+  color: #555;
+  opacity: 0.4;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.todo-link {
+  color: rgb(37, 31, 29);
+}
+
+li {
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+
+
+/* delade regler */
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+a {
+  font-family: "Helvetica", Arial, sans-serif;
+}
+
+button,
+a,
+i {
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+
+  aside {
+    width: 50px;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  aside.widen {
+    width: 150px;
+  }
+
+  .today-aside {
+    width: 50px;
+    transition: width 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flexbox;
-    height: 127px;
-    width: 350px;
-    padding: 20px; 
-    box-sizing: border-box; 
-    font-family: "Helvetica", Arial, sans-serif;
-    color: #ffffff;
-    background-color: #97797e;
+    padding: 0px;
   }
-  
-  .today-aside h3 {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
+
   .today-aside p {
-    background-color: rgb(238, 236, 234);
-    opacity: 0.8;
-    font-family: "Helvetica", Arial, sans-serif;
-    color: #484848;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin: 0; 
-  }
- 
-  .popup-div {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 192, 203, 0.9);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
+    font-size: 10px;
+    padding:1px;
   }
 
-  .popup-header{
-    display: flex;
-  }
-
-  .todo-remove-button, .todo-edit-button, .todo-save-button{
-    background-color: transparent;
-    border-radius: 5px;
-    border-color: #807e7e;
-    margin-top: 5px;
-    padding: 4px;
+  aside.widen  .today-aside p {
     font-size: 15px;
-    color: #555;
+    padding:2px;
   }
 
-  .fa.fa-window-close {
-    color: #555;
-    opacity: 0.4;
+
+  aside.widen .today-aside{
+    width: 150px;
+  }
+
+   .today-aside h3{
+    font-size: 12px;
+  }
+
+  aside.widen   .today-aside h3{
     font-size: 20px;
-    margin-left: 20px;
   }
 
-  .todo-link{
-    color: rgb(37, 31, 29);
+
+  .todo-list li{
+    font-size: 10px;
   }
 
-  li{
+ aside.widen .todo-list li {
+  font-size: 13px;
+}
+
+  #add-todo-btn,
+  #show-todos-btn {
+    width: 140px;
+    font-size: 12px;
+  }
+
+  .date-submit-div {
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #title-input {
+    margin-top: 2px;
+    width: 140px;
+  }
+
+  .todo-list {
+    margin-left: 0px;
+    max-width: 140px;
+  }
+
+  .todo-list li {
+    padding: 2px;
     flex-wrap: wrap;
-    white-space: nowrap;
+    white-space: pre-wrap;
+  }
+
+  .todo-list h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
   }
 
 
+}
 
-  /* delade regler */
-  a{
-    text-decoration: none;
-  }
-  h1, h2, h3, h4, h5, a{
-    font-family: "Helvetica", Arial, sans-serif;
-  }
-  button, a, i{
-    cursor: pointer;
-  }

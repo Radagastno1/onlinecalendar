@@ -19,13 +19,13 @@
     <div id="header-items">
 
       <button data-cy="prev-month" title="Förgående månad">
-        <i class="fas fa-chevron-left"></i> 
+        <i class="fas fa-chevron-left"></i>
       </button>
       <h2 id="month-year" data-cy="month-year">Juni 2023</h2>
       <button data-cy="next-month" title="Nästa månad">
         <i class="fas fa-chevron-right"></i>
       </button>
-      
+
 
     </div>
   </header>
@@ -38,8 +38,8 @@
       <p id="day"></p>
       <p id="date"></p>
     </div>
-    
-    
+
+
 
     <div class="todo-aside">
 
@@ -62,7 +62,7 @@
 
       </div>
 
-      <div id="todo-list-div" class="alltodos-div" >
+      <div id="todo-list-div" class="alltodos-div">
 
         <button id="show-todos-btn">
           Mina todos
@@ -73,7 +73,7 @@
           <ul id="todo-list" class="todo-reveal-list" data-cy="todo-list">
             <!-- här ska li skrivas ut -->
           </ul>
-          
+
         </div>
 
       </div>
@@ -82,68 +82,76 @@
 
   </aside>
 
+  <script>
+    var myAside = document.querySelector("aside");
+
+    myAside.addEventListener("click", function () {
+      myAside.classList.toggle("widen");
+    });
+  </script>
+
   <main>
 
-      <table id="calendar-table">
-        <thead>
-          <tr>
-            <th class="day">Måndag</th>
-            <th class="day">Tisdag</th>
-            <th class="day">Onsdag</th>
-            <th class="day">Torsdag</th>
-            <th class="day">Fredag</th>
-            <th class="day">Lördag</th>
-            <th class="day">Söndag</th>
-          </tr>
-        </thead>
-        <tbody id="calendar-body" data-cy="calendar-body" >
-         <tr>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
-          <td data-cy="calendar-cell"></td>
+    <table id="calendar-table">
+      <thead>
+        <tr>
+          <th class="day">Måndag</th>
+          <th class="day">Tisdag</th>
+          <th class="day">Onsdag</th>
+          <th class="day">Torsdag</th>
+          <th class="day">Fredag</th>
+          <th class="day">Lördag</th>
+          <th class="day">Söndag</th>
         </tr>
-          <tr>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-          </tr>
-          <tr>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-          </tr>
-          <tr>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-          </tr>
-          <tr>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-            <td data-cy="calendar-cell"></td>
-          </tr> 
-        </tbody>
-      </table>
+      </thead>
+      <tbody id="calendar-body" data-cy="calendar-body">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
     </div>
 
   </main>
