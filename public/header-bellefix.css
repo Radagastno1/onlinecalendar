@@ -37,19 +37,19 @@ header {
 
   [data-cy='prev-month'] {
     position: absolute;
-    left: 30%; 
-    top: 3.2rem; 
+    left: 10px; /* Uppdatera detta värde enligt ditt behov */
+    top: 3rem; /* Uppdatera detta värde enligt ditt behov */
 }
 
 [data-cy='month-year'] {
     position: absolute;
-    left: 60%; 
+    left: 50%; /* Uppdatera detta värde enligt ditt behov */
     top: 3rem;
     transform: translateX(-50%);
 }
 
 [data-cy='next-month'] {
     position: absolute;
-    right: 10%; 
-    top: 3.2rem; 
+    right: 10px; /* Uppdatera detta värde enligt ditt behov */
+    top: 3rem; /* Uppdatera detta värde enligt ditt behov */
 }

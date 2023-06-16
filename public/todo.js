@@ -111,7 +111,7 @@ function renderTodoList() {
   }
   else {
     const textLi = document.createElement('li');
-    textLi.textContent = "Det finns ingen todo än.."
+    textLi.textContent = "There is nothing ToDo yet..."
     todoUl.appendChild(textLi);
   }
 }
