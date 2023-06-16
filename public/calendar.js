@@ -8,15 +8,26 @@ function initCalendar() {
   var prevMonthButton = document.querySelector("[data-cy='prev-month']");
   var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
-  prevMonthButton.addEventListener('click', function() {
+  prevMonthButton.addEventListener('click', function () {
     changeMonth(-1);
   });
 
-  nextMonthButton.addEventListener('click', function() {
+  nextMonthButton.addEventListener('click', function () {
     changeMonth(1);
   });
 
   updateCalendarCells();
+
+  addCalendarCellListeners();
+}
+
+function addCalendarCellListeners() {
+  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+  calendarCells.forEach(calendarCell => {
+    calendarCell.addEventListener('click', event => {
+      filterTodoByCalendarCell(event);
+    });
+  });
 }
 
 function changeMonth(change) {
@@ -25,7 +36,7 @@ function changeMonth(change) {
   var newDate = new Date(year, month + change, 1);
   state.month = newDate.getMonth();
   state.year = newDate.getFullYear();
-  
+
   updateCalendarCells();
   updateCalendarMonthLabel();
 }
@@ -35,7 +46,7 @@ function updateCalendarMonthLabel() {
   const date = new Date(year, month, 1);
   var monthString = date.toLocaleString('default', { month: 'long' });
   monthString = capitalizeFirstLetter(monthString);
-  
+
   const monthYearElement = document.getElementById('month-year');
   monthYearElement.textContent = monthString + ' ' + year;
 }
@@ -72,10 +83,10 @@ function updateCalendarCells() {
   var currentDate = new Date();
   var currentDay = currentDate.getDate();
 
-  var firstDayOfMonth = new Date(year, month - 1, 1);
+  var firstDayOfMonth = new Date(year, month, 1);
   var startingDay = (firstDayOfMonth.getDay() + 6) % 7;
 
-  var daysInMonth = new Date(year, month, 0).getDate();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
   var dayCounter = 1;
 
   for (var i = 0; i < 6; i++) {
@@ -90,19 +101,27 @@ function updateCalendarCells() {
       } else if (dayCounter > daysInMonth) {
         cell.textContent = '';
       } else {
-        cell.textContent = dayCounter;
+        var dateElement = document.createElement('span');
+        dateElement.textContent = dayCounter;
+        dateElement.setAttribute('data-cy', 'calendar-cell-date');
+        cell.appendChild(dateElement);
 
-        if (dayCounter === currentDay && month === currentDate.getMonth() + 1 && year == currentDate.getFullYear()) {
+        if (dayCounter === currentDay && month === currentDate.getMonth() && year == currentDate.getFullYear()) {
           cell.classList.add('current-day');
         }
 
         dayCounter++;
       }
 
-      cell.classList.add('data-cy', 'calendar-cell-date');
       row.appendChild(cell);
     }
 
     calendarBody.appendChild(row);
+    addCalendarCellListeners() ;
   }
 }
+
+
+
+
+
