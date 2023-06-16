@@ -33,8 +33,6 @@ function addCalendarCellListeners() {
       });
     });
   }
-  
-// >>>>>>> 6b63cf19057fe472ba9a5b5bc3e58da0f99a76c7
 
 // function addCalendarCellListeners() {
 //   const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
