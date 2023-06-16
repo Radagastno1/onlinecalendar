@@ -20,6 +20,7 @@ function initCalendar() {
 
   addCalendarCellListeners();
 }
+
 // bytte till denna så man kan klicka på cellen för att se todosen igen
 function addCalendarCellListeners() {
     const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
