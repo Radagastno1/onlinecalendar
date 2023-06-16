@@ -9,7 +9,7 @@ main {
     height: auto;
     background-color: rgb(235, 186, 186);  
     display: flex;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 #calendar-table {
