@@ -1,5 +1,5 @@
 aside {
-  background-color: rgb(73, 69, 68);
+  background-color: rgb(211, 145, 158);
   opacity: 0.8;
   display: flex;
   flex-direction: column;
@@ -7,20 +7,17 @@ aside {
   top: 0;
   left: 0;
   display: flexbox;
-  height: 100vh;
+  height: 100%;
   width: 350px;
-  transition: width 0.3s ease-in-out;
-  /* Lägg till övergångseffekt */
-  /* overflow: hidden;  för att dölja när mindre */
 }
 
 .todo-aside {
-  background-color: rgb(73, 69, 68);
-  margin-top: 160px; 
-  height: calc(100% - 100px); 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+background-color: rgb(211, 145, 158);
+margin-top: 160px; 
+height: calc(100% - 100px); 
+display: flex;
+flex-direction: column;
+align-items: flex-start;
 }
 
 .todo-form {
@@ -32,48 +29,48 @@ aside {
 }
 
 #add-todo-btn {
-    background-color: rgb(126, 118, 118);
+  background-color: rgb(171, 92, 121);
 }
 
 #add-todo-btn,
 #show-todos-btn {
-  padding: 4px;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 2px;
-  height: 50px;
-  width: 280px;
-  letter-spacing: 2px;
-  font-size: 14px;
-  font-family: "Helvetica", Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  position: relative;
-  overflow: hidden;
-  transition: width 0.3s ease;
+padding: 4px;
+color: rgb(255, 255, 255);
+border: none;
+border-radius: 2px;
+height: 50px;
+width: 280px;
+letter-spacing: 2px;
+font-size: 14px;
+font-family: "Helvetica", Arial, sans-serif;
+display: flex;
+align-items: center;
+justify-content: space-around;
+position: relative;
+overflow: hidden;
+transition: width 0.3s ease;
 }
 
 #add-todo-btn::before,
 #show-todos-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: left 0.3s ease; 
+content: "";
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 0.1);
+transition: left 0.3s ease; 
 }
 
 #add-todo-btn:hover::before,
 #show-todos-btn:hover::before {
-  left: 0; 
+left: 0; 
 }
 
 #add-todo-btn:hover,
 #show-todos-btn:hover {
-  width: 320px; 
+width: 320px; 
 }
 
 .date-submit-div {
@@ -84,18 +81,27 @@ aside {
 }
 
 #todo-input {
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-left: 20px;
-    height: 80px;
-    width: 240px;
-    resize: none;
+border-radius: 4px;
+margin-top: 20px;
+margin-left: 20px;
+height: 80px;
+width: 240px;
+resize: none;
+padding: 8px;
+font-size: 14px;
 }
 
-#todo-input {
-    margin-left: 20px;
-    width: 130px;
-    height: 30px;
+#save-todo-button {
+padding: 4px 12px;
+color: aliceblue;
+background-color: rgb(11, 11, 11);
+font-family: "Helvetica", Arial, sans-serif;
+letter-spacing: 1px;
+border: none;
+border-radius: 2px;
+height: 30px;
+font-size: 12px;
+text-transform: uppercase;
 }
 
 .todo-reveal-list {
@@ -107,32 +113,41 @@ aside {
 }
 
 #show-todos-btn {
-  background-color: darkseagreen;
+  background-color: rgb(19, 19, 19);
 }
 
 .todo-list {
   font-family: "Helvetica", Arial, sans-serif;
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
-  height: auto;
-  overflow-y: scroll;
+  overflow: auto;
   flex-wrap: wrap;
+  max-width: 350px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .todo-list li {
+  white-space: normal;
+  color:rgb(255, 255, 255);
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 12px;
   margin-bottom: 5px;
-  padding: 5px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
+  padding: 5px 5px 5px 15px;
+  background-color: #333333;
+  border-radius: 1px;
   list-style: none;
-  width: 300px;
 }
 
 .todo-list h3 {
+  font-family: "Helvetica", Arial, sans-serif;
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
+  letter-spacing: 2px;
+  padding: 10px;
+  background-color: #121212;
+  color:rgb(236, 236, 236);
 }
 
 .today-aside {
@@ -142,65 +157,79 @@ aside {
   top: 0;
   left: 0;
   display: flexbox;
-  height: 127px;
+  height: 128px;
   width: 350px;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 20px; 
+  box-sizing: border-box; 
   font-family: "Helvetica", Arial, sans-serif;
   color: #ffffff;
-  background-color: #97797e;
+  background-color: #151515;
 }
 
 .today-aside h3 {
   text-align: center;
   margin-bottom: 10px;
   font-size: 1.3rem;
-  color: #ffffff;
+  color:rgb(255, 255, 255);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .today-aside p {
-  background-color: rgb(238, 236, 234);
-  opacity: 0.8;
+  background-color: 151515;
   font-family: "Helvetica", Arial, sans-serif;
-  color: #484848;
+  color: #fbf9f9;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 1px;
   padding-top: 2px;
   padding-bottom: 2px;
-  margin: 0;
+  margin-top: -3px;
 }
 
 .popup-div {
   position: fixed;
+  font-family: "Helvetica", Arial, sans-serif;
   top: 50%;
+  color:rgb(255, 255, 255);
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 192, 203, 0.9);
+  background-color: rgba(108, 98, 98, 0.9);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(51, 51, 51, 0.2);
   z-index: 9999;
   display: flex;
   flex-direction: column;
 }
 
-.popup-header {
+.popup-header{
   display: flex;
 }
 
-.todo-remove-button,
-.todo-edit-button,
-.todo-save-button {
-  background-color: transparent;
+.todo-remove-button, .todo-edit-button, .todo-save-button{
   border-radius: 5px;
-  border-color: #807e7e;
+  font-family: "Helvetica", Arial, sans-serif;
+  border-color: #4d4d4d;
   margin-top: 5px;
   padding: 4px;
   font-size: 15px;
-  color: #555;
+  color: #292929;
+}
+
+.todo-aside .todo-remove-button,
+.todo-aside .todo-edit-button,
+.todo-aside .todo-save-button {
+  border-radius: 5px;
+  font-family: "Helvetica", Arial, sans-serif;
+  border-color: #4d4d4d;
+  margin-top: 4px;
+  padding: 4px;
+  font-size: 15px;
+  color: #292929;
+  display: inline-block;
+  justify-content: right;
+  margin-left: 10px;
 }
 
 .fa.fa-window-close {
@@ -210,250 +239,26 @@ aside {
   margin-left: 20px;
 }
 
-.todo-link {
-  color: rgb(37, 31, 29);
+.todo-link{
+  font-family: "Helvetica", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
 }
 
-li {
+li{
   flex-wrap: wrap;
   white-space: nowrap;
 }
 
-.shrink-button {
-  display: none;
-}
 
 /* delade regler */
-a {
+a{
   text-decoration: none;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-a {
+h1, h2, h3, h4, h5, a{
   font-family: "Helvetica", Arial, sans-serif;
 }
-
-button,
-a,
-i {
+button, a, i{
   cursor: pointer;
 }
-
-@media (max-width: 1024px) {
-
-  .shrink-button {
-    display: block;
-  }
-
-  aside {
-    width: 150px;
-    transition: width 0.3s ease-in-out;
-    overflow: hidden;
-  }
-
-  aside.shrink {
-    width: 80px;
-  }
-
-  .today-aside {
-    width: 150px;
-    transition: width 0.3s ease-in-out;
-    background-color: rgb(19, 19, 19);
-}
-
-  .todo-list {
-    font-family: "Helvetica", Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    margin-left: 20px;
-    height: 200px;
-    overflow: auto;
-    flex-wrap: wrap;
-    max-width: 350px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}
-
-.todo-list li {
-    white-space: normal;
-    color:rgb(255, 255, 255);
-    font-family: "Helvetica", Arial, sans-serif;
-    font-size: 12px;
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    list-style: none;
-  }
-
-.todo-list h3 {
-    font-family: "Helvetica", Arial, sans-serif;
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    padding: 10px;
-    background-color: #121212;
-    color:rgb(236, 236, 236);
-}
-
-  .today-aside {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flexbox;
-    height: 127px;
-    width: 350px;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: "Helvetica", Arial, sans-serif;
-    color: #ffffff;
-    background-color: #97797e;
-  }
-
-  .today-aside h3 {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-    color:rgb(255, 255, 255);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .today-aside p {
-    background-color: rgb(238, 236, 234);
-    opacity: 0.8;
-    font-family: "Helvetica", Arial, sans-serif;
-    color: #484848;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin: 0; 
-  }
-
-  .popup-div {
-    position: fixed;
-    top: 50%;
-    color:rgb(255, 255, 255);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 192, 203, 0.9);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    overflow: scroll;
-    /* height: 80px; */
-  }
-
-  .today-aside p {
-    font-size: 10px;
-    padding: 1px;
-  }
-
-  aside.shrink .today-aside p {
-    font-size: 15px;
-    padding: 2px;
-  }
-
-
-  aside.shrink .today-aside {
-    width: 80px
-  }
-
-  .todo-remove-button, .todo-edit-button, .todo-save-button{
-    border-radius: 5px;
-    border-color: #807e7e;
-    margin-top: 5px;
-    padding: 4px;
-    font-size: 15px;
-    color: #555;
-  }
-
-  .today-aside h3 {
-    font-size: 20px;
-  }
-
-
-  aside.shrink .today-aside h3 {
-    font-size: 12px;
-  }
-
-  .todo-link{
-    font-family: "Helvetica", Arial, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-  }
-
-
-  .todo-list li {
-    font-size: 13px;
-  }
-
-  .shrink .todo-list li {
-    font-size: 10px;
-  }
-
-  #add-todo-btn,
-  #show-todos-btn {
-    width: 140px;
-    font-size: 12px;
-  }
-
-  .date-submit-div {
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  #title-input {
-    /* margin-top: 2px; */
-    width: 150px;
-  }
-
-  .todo-list {
-    margin-left: 0px;
-    max-width: auto;
-    max-height: 133px;
-  }
-
-  .todo-list li {
-    padding: 2px;
-    flex-wrap: wrap;
-    white-space: pre-wrap;
-  }
-
-  .todo-list h3 {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  aside.shrink .todo-list {
-    height: 200px;
-  }
-
-  .todo-list {
-    height: 400px;
-  }
-
-}
-
-/* @media (max-width: 667px) {
-    aside {
-      flex-direction: row;
-    }
-  } */ 
