@@ -6,17 +6,18 @@ aside {
   position: fixed;
   top: 0;
   left: 0;
-  display: flexbox;
-  height: 100%;
+  height: 100vh;
   width: 350px;
   transition: width 0.3s ease-in-out; /* Lägg till övergångseffekt */
-  overflow: hidden;  /* för att dölja när mindre */
+  /* overflow: hidden;  för att dölja när mindre */
 }
 
 .todo-aside {
   background-color: azure;
-  margin-top: 200px;
-  height: calc(100% - 200px);
+  margin-top: 140px;
+  height: 100vh;
+  /* height: calc(100% - 200px); */
+  /* margin-top: 0px; */
 }
 
 .todo-form {
@@ -99,8 +100,8 @@ aside {
   display: flex;
   flex-direction: row;
   margin-left: 20px;
-  height: 200px;
-  overflow: auto;
+  height: auto;
+  overflow-y: scroll; 
   flex-wrap: wrap;
 }
 
@@ -248,6 +249,8 @@ i {
     display: flex;
     flex-direction: column;
     padding: 0px;
+    overflow: scroll;
+    /* height: 80px; */
   }
 
   .today-aside p {
@@ -302,7 +305,8 @@ i {
 
   .todo-list {
     margin-left: 0px;
-    max-width: 150px;
+    max-width: auto;
+    max-height: 133px;
   }
 
   .todo-list li {
@@ -324,7 +328,14 @@ i {
     height: 400px;
   }
   
-
-
 }
+
+
+  /* @media (max-width: 667px) {
+    aside {
+      flex-direction: row;
+    }
+  } */
+  
+
 

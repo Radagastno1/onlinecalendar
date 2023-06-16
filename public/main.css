@@ -1,20 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html {
-    height: 100%;
-    max-width: 100%;
-}
-
-body {
-    height: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-}
 
 main {
     margin-left: 330px;
@@ -67,7 +51,7 @@ main {
         width: auto;
         /* justify-content: flex-start; */
         margin-top: 9rem;
-        margin-left: 80px;
+        margin-left: 130px;
     }
 
     #calendar-body {}
@@ -75,7 +59,7 @@ main {
     #calendar-table {
         font-size: 20px;
         padding: 0 2px;
-        left: 0;
+        margin-left: 0;
     }
 
     [data-cy="calendar-cell"] {
@@ -95,4 +79,45 @@ main {
         padding: 0 20px;
         /* Uppdatera padding för att justera bredden */
     }
+
+    td span{
+       font-size: 10px; 
+    }
+}
+
+@media (max-width: 667px) {
+
+    main {
+        width: auto;
+        /* justify-content: flex-start; */
+        margin-top: 9rem;
+        margin-left: 25px;
+    }
+
+    #calendar-body {}
+
+    #calendar-table {
+        font-size: 20px;
+        padding: 0 2px;
+        margin-left: 0;
+    }
+
+    [data-cy="calendar-cell"] {
+        border: 1px solid black;
+        padding: 2.0vw 2vw;
+        grid-column: span;
+        cursor: pointer;
+    }
+
+    th {
+        font-size: 5px;
+    }
+
+    .day {
+        font-size: 10px;
+        /* Uppdatera font-size för att göra dagarna mindre */
+        padding: 0 15px;
+        /* Uppdatera padding för att justera bredden */
+    }
+
 }
