@@ -88,7 +88,7 @@ function getMonthNumber(month) {
 }
 function updateCalendarCells() {
   var calendarBody = document.getElementById('calendar-body');
-  calendarBody.innerHTML = '';
+  // calendarBody.innerHTML = '';
 
   const { month, year } = state;
 

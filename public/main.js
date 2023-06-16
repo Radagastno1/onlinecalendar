@@ -26,11 +26,17 @@ function main() {
 // });
 
 const calendarBody = document.getElementById('calendar-body');
+let isCellClicked = false;
+
 calendarBody.addEventListener('click', event => {
   if (event.target.matches("[data-cy='calendar-cell']")) {
-    filterTodoByCalendarCell(event);
+    if (isCellClicked) {
+      location.reload();
+    } else {
+      filterTodoByCalendarCell(event);
+      isCellClicked = true;
+    }
   }
 });
-
 
 }
