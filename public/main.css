@@ -64,8 +64,8 @@ main {
 @media (max-width: 1024px) {
 
     main {
-        width: 100%;
-        justify-content: flex-start;
+        width: auto;
+        /* justify-content: flex-start; */
         margin-top: 9rem;
         margin-left: 80px;
     }
@@ -90,7 +90,7 @@ main {
     }
 
     .day {
-        font-size: 16px;
+        font-size: 14px;
         /* Uppdatera font-size för att göra dagarna mindre */
         padding: 0 20px;
         /* Uppdatera padding för att justera bredden */
