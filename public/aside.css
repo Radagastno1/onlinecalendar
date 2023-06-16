@@ -1,5 +1,5 @@
 aside {
-    background-color: rgb(235, 186, 186);
+    background-color: rgb(73, 69, 68);
     opacity: 0.8;
     display: flex;
     flex-direction: column;
@@ -12,9 +12,12 @@ aside {
 }
 
 .todo-aside {
-    background-color: azure;
-    margin-top: 200px;
-    height: calc(100% - 200px);
+  background-color: rgb(73, 69, 68);
+  margin-top: 160px; 
+  height: calc(100% - 100px); 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .todo-form {
@@ -26,23 +29,48 @@ aside {
 }
 
 #add-todo-btn {
-    background-color: rgb(48, 137, 238);
+    background-color: rgb(126, 118, 118);
 }
 
 #add-todo-btn,
 #show-todos-btn {
-    padding: 4px;
-    color: aliceblue;
-    border: none;
-    border-radius: 2px;
-    height: 50px;
-    width: 280px;
-    letter-spacing: 2px;
-    font-size: 14px;
-    font-family: "Helvetica", Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  padding: 4px;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 2px;
+  height: 50px;
+  width: 280px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-family: "Helvetica", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+#add-todo-btn::before,
+#show-todos-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: left 0.3s ease; 
+}
+
+#add-todo-btn:hover::before,
+#show-todos-btn:hover::before {
+  left: 0; 
+}
+
+#add-todo-btn:hover,
+#show-todos-btn:hover {
+  width: 320px; 
 }
 
 .date-submit-div {
@@ -52,32 +80,28 @@ aside {
     justify-content: space-between;
 }
 
+#todo-input {
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 80px;
+  width: 240px;
+  resize: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
 #save-todo-button {
-    padding: 4px;
-    color: aliceblue;
-    background-color: rgb(48, 137, 238);
-    font-family: "Helvetica", Arial, sans-serif;
-    letter-spacing: 2px;
-    border: none;
-    border-radius: 2px;
-    height: 30px;
-    font-size: 10px;
-}
-
-/* ska vara en klass för samma element som stylas istället ? */
-#todo-input {
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-left: 20px;
-    height: 80px;
-    width: 240px;
-    resize: none;
-}
-
-#todo-input {
-    margin-left: 20px;
-    width: 130px;
-    height: 30px;
+  padding: 4px 12px;
+  color: aliceblue;
+  background-color: rgb(11, 11, 11);
+  font-family: "Helvetica", Arial, sans-serif;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 2px;
+  height: 30px;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .todo-reveal-list {
@@ -89,31 +113,41 @@ aside {
 }
 
 #show-todos-btn {
-    background-color: darkseagreen;
+    background-color: rgb(19, 19, 19);
 }
 
 .todo-list {
     font-family: "Helvetica", Arial, sans-serif;
     display: flex;
     flex-direction: row;
-    margin-left: 20px;
-    height: 200px;
     overflow: auto;
     flex-wrap: wrap;
+    max-width: 350px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .todo-list li {
+    white-space: normal;
+    color:rgb(255, 255, 255);
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 12px;
     margin-bottom: 5px;
-    padding: 5px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
+    padding: 5px 5px 5px 15px;
+    background-color: #9b9b9b;
+    border-radius: 1px;
     list-style: none;
 }
 
 .todo-list h3 {
+    font-family: "Helvetica", Arial, sans-serif;
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px;
+    background-color: #121212;
+    color:rgb(236, 236, 236);
 }
 
 .today-aside {
@@ -123,46 +157,47 @@ aside {
     top: 0;
     left: 0;
     display: flexbox;
-    height: 127px;
+    height: 128px;
     width: 350px;
     padding: 20px; 
     box-sizing: border-box; 
     font-family: "Helvetica", Arial, sans-serif;
     color: #ffffff;
-    background-color: #97797e;
+    background-color: #151515;
   }
   
   .today-aside h3 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 1.3rem;
-    color: #ffffff;
+    color:rgb(255, 255, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
   .today-aside p {
-    background-color: rgb(238, 236, 234);
-    opacity: 0.8;
+    background-color: 151515;
     font-family: "Helvetica", Arial, sans-serif;
-    color: #484848;
+    color: #fbf9f9;
     text-align: center;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 1px;
     padding-top: 2px;
     padding-bottom: 2px;
-    margin: 0; 
+    margin-top: -3px;
   }
  
   .popup-div {
     position: fixed;
+    font-family: "Helvetica", Arial, sans-serif;
     top: 50%;
+    color:rgb(255, 255, 255);
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 192, 203, 0.9);
+    background-color: rgba(108, 98, 98, 0.9);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(51, 51, 51, 0.2);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -173,13 +208,28 @@ aside {
   }
 
   .todo-remove-button, .todo-edit-button, .todo-save-button{
-    background-color: transparent;
     border-radius: 5px;
-    border-color: #807e7e;
+    font-family: "Helvetica", Arial, sans-serif;
+    border-color: #4d4d4d;
     margin-top: 5px;
     padding: 4px;
     font-size: 15px;
-    color: #555;
+    color: #292929;
+  }
+
+  .todo-aside .todo-remove-button,
+  .todo-aside .todo-edit-button,
+  .todo-aside .todo-save-button {
+    border-radius: 5px;
+    font-family: "Helvetica", Arial, sans-serif;
+    border-color: #4d4d4d;
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 15px;
+    color: #292929;
+    display: inline-block;
+    justify-content: right;
+    margin-left: 10px;
   }
 
   .fa.fa-window-close {
@@ -190,7 +240,10 @@ aside {
   }
 
   .todo-link{
-    color: rgb(37, 31, 29);
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
   }
 
   li{
