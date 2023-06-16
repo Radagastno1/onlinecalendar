@@ -32,7 +32,7 @@
 
   <aside>
 
-    <div class="today-aside" data-cy="welcome-segment"> 
+    <div class="today-aside" data-cy="welcome-segment">
       <h3>Dagens Datum</h3>
       <p id="time"></p>
       <p id="day"></p>
@@ -84,20 +84,21 @@
 
   </aside>
 
+
   <main>
     <table id="calendar-table">
       <thead>
         <tr>
+          <!-- <th class="day">w</th>
           <th class="day">w</th>
           <th class="day">w</th>
           <th class="day">w</th>
           <th class="day">w</th>
           <th class="day">w</th>
-          <th class="day">w</th>
-          <th class="day">w</th>
+          <th class="day">w</th> -->
         </tr>
       </thead>
-      <tbody id="calendar-body" data-cy="calendar-body">
+      <tbody id="calendar-body-id" data-cy="calendar-body">
         <tr>
           <td></td>
           <td></td>
@@ -154,12 +155,12 @@
   <script src="today.js"></script>
 
   <script>
-   var shrinkButton = document.querySelector(".shrink-button");
-var asideElement = document.querySelector("aside");
+    var shrinkButton = document.querySelector(".shrink-button");
+    var asideElement = document.querySelector("aside");
 
-shrinkButton.addEventListener("click", function () {
-  asideElement.classList.toggle("shrink");
-});
+    shrinkButton.addEventListener("click", function () {
+      asideElement.classList.toggle("shrink");
+    });
 
   </script>
 

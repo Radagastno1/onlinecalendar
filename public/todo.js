@@ -182,7 +182,7 @@ function saveTodo() {
   const todoTitle = document.querySelector('#title-input').value;
   const todoDate = document.querySelector('#date-input').value;
 
-  if (todoTitle && todoDate >= getTodaysDate()) {
+  if (todoTitle && todoDate) {
     const todo = {
       title: todoTitle,
       date: todoDate
