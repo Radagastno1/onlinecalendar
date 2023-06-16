@@ -41,4 +41,22 @@ main {
     border: 1px solid black;
     padding: 3.2vw 4vw;
     grid-column: span;
+    cursor: pointer;
 }
+[data-cy="calendar-cell"]:hover{
+    background-color: pink;
+}
+
+[data-cy="calendar-cell"] {
+    position: relative;
+  }
+  
+  [data-cy="calendar-cell-todos"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-style:italic;
+    font-weight:bolder;
+  }
+  
+
