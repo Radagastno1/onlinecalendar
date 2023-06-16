@@ -1,15 +1,16 @@
 aside {
- background-color: rgb(73, 69, 68);
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flexbox;
-    height: 100vh;
-    width: 350px;
-  transition: width 0.3s ease-in-out; /* Lägg till övergångseffekt */
+  background-color: rgb(73, 69, 68);
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flexbox;
+  height: 100vh;
+  width: 350px;
+  transition: width 0.3s ease-in-out;
+  /* Lägg till övergångseffekt */
   /* overflow: hidden;  för att dölja när mindre */
 }
 
@@ -17,8 +18,8 @@ aside {
 
 .todo-aside {
   background-color: rgb(73, 69, 68);
-  margin-top: 160px; 
-  height: calc(100% - 100px); 
+  margin-top: 160px;
+  height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -61,17 +62,17 @@ aside {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.1);
-  transition: left 0.3s ease; 
+  transition: left 0.3s ease;
 }
 
 #add-todo-btn:hover::before,
 #show-todos-btn:hover::before {
-  left: 0; 
+  left: 0;
 }
 
 #add-todo-btn:hover,
 #show-todos-btn:hover {
-  width: 320px; 
+  width: 320px;
 }
 
 .date-submit-div {
@@ -89,7 +90,7 @@ aside {
   height: 80px;
   width: 240px;
   resize: none;
-   padding: 8px;
+  padding: 8px;
   font-size: 14px;
 }
 
@@ -124,7 +125,7 @@ aside {
   flex-direction: row;
   margin-left: 20px;
   height: auto;
-  overflow-y: scroll; 
+  overflow-y: scroll;
   flex-wrap: wrap;
 }
 
@@ -226,7 +227,7 @@ li {
   white-space: nowrap;
 }
 
-.shrink-button{
+.shrink-button {
   display: none;
 }
 
@@ -252,8 +253,8 @@ i {
 
 @media (max-width: 1024px) {
 
-  .shrink-button{
-    display:block;
+  .shrink-button {
+    display: block;
   }
 
   aside {
@@ -270,9 +271,9 @@ i {
     width: 150px;
     transition: width 0.3s ease-in-out;
     background-color: rgb(19, 19, 19);
-}
+  }
 
-.todo-list {
+  .todo-list {
     font-family: "Helvetica", Arial, sans-serif;
     display: flex;
     flex-direction: row;
@@ -281,11 +282,11 @@ i {
     max-width: 350px;
     flex-wrap: nowrap;
     overflow-x: auto;
-}
+  }
 
-.todo-list li {
+  .todo-list li {
     white-space: normal;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     font-family: "Helvetica", Arial, sans-serif;
     font-size: 12px;
     margin-bottom: 5px;
@@ -293,9 +294,9 @@ i {
     background-color: #9b9b9b;
     border-radius: 1px;
     list-style: none;
-}
+  }
 
-.todo-list h3 {
+  .todo-list h3 {
     font-family: "Helvetica", Arial, sans-serif;
     margin-top: 20px;
     font-size: 14px;
@@ -303,10 +304,10 @@ i {
     letter-spacing: 2px;
     padding: 10px;
     background-color: #121212;
-    color:rgb(236, 236, 236);
-}
+    color: rgb(236, 236, 236);
+  }
 
-.today-aside {
+  .today-aside {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -315,21 +316,21 @@ i {
     display: flexbox;
     height: 128px;
     width: 350px;
-    padding: 20px; 
-    box-sizing: border-box; 
+    padding: 20px;
+    box-sizing: border-box;
     font-family: "Helvetica", Arial, sans-serif;
     color: #ffffff;
     background-color: #151515;
   }
-  
+
   .today-aside h3 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 1.3rem;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
-  
+
   .today-aside p {
     background-color: 151515;
     font-family: "Helvetica", Arial, sans-serif;
@@ -342,12 +343,12 @@ i {
     padding-bottom: 2px;
     margin-top: -3px;
   }
- 
+
   .popup-div {
     position: fixed;
     font-family: "Helvetica", Arial, sans-serif;
     top: 50%;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(108, 98, 98, 0.9);
@@ -364,19 +365,22 @@ i {
 
   .today-aside p {
     font-size: 10px;
-    padding:1px;
+    padding: 1px;
   }
 
   aside.shrink .today-aside p {
     font-size: 15px;
-    padding:2px;
+    padding: 2px;
   }
 
 
-  aside.shrink .today-aside{
-    width: 80px;
+  aside.shrink .today-aside {
+    width: 80px
+  }
 
-  .todo-remove-button, .todo-edit-button, .todo-save-button{
+  .todo-remove-button,
+  .todo-edit-button,
+  .todo-save-button {
     border-radius: 5px;
     font-family: "Helvetica", Arial, sans-serif;
     border-color: #4d4d4d;
@@ -401,15 +405,16 @@ i {
     margin-left: 10px;
   }
 
-   .today-aside h3{
+  .today-aside h3 {
     font-size: 20px;
   }
 
 
-  aside.shrink .today-aside h3{
+  aside.shrink .today-aside h3 {
     font-size: 12px;
-    }
-  .todo-link{
+  }
+
+  .todo-link {
     font-family: "Helvetica", Arial, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -417,13 +422,13 @@ i {
   }
 
 
-  .todo-list li{
+  .todo-list li {
     font-size: 13px;
   }
 
- .shrink .todo-list li {
-  font-size: 10px;
-}
+  .shrink .todo-list li {
+    font-size: 10px;
+  }
 
   #add-todo-btn,
   #show-todos-btn {
@@ -464,18 +469,16 @@ i {
   aside.shrink .todo-list {
     height: 200px;
   }
+
   .todo-list {
     height: 400px;
   }
-  
+
 }
 
 
-  /* @media (max-width: 667px) {
+/* @media (max-width: 667px) {
     aside {
       flex-direction: row;
     }
   } */
-  
-
-
