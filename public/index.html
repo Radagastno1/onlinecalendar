@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <link rel="stylesheet" href="media.css">
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="aside.css">
@@ -32,7 +33,7 @@
 
   <aside>
 
-    <div class="today-aside">
+    <div class="today-aside" data-cy="welcome-segment" > 
       <h3>Dagens Datum</h3>
       <p id="time"></p>
       <p id="day"></p>
@@ -48,7 +49,7 @@
       <div class="add-todo-div">
 
         <button id="add-todo-btn">
-          Lägg till todo i kalender
+          Add a new ToDo
           <i class="fas fa-plus" class="plus-icon" data-cy="todo-reveal-form"></i>
         </button>
 
@@ -57,7 +58,7 @@
           <textarea id="title-input" data-cy="todo-title-input" placeholder="Walk the dog..."></textarea>
           <div class="date-submit-div">
             <input type="date" data-cy="todo-date-input" id="date-input">
-            <button id="save-todo-button" data-cy="save-todo-button" type="submit">Add todo</button>
+            <button id="save-todo-button" data-cy="save-todo-button" type="submit">Add ToDo</button>
           </div>
 
         </form>
@@ -67,7 +68,7 @@
       <div id="todo-list-div" class="alltodos-div">
 
         <button id="show-todos-btn">
-          Mina todos
+          My ToDos
           <i class="fas fa-tasks" class="todo-icon"></i>
         </button>
 
@@ -85,7 +86,6 @@
   </aside>
 
   <main>
-
     <table id="calendar-table">
       <thead>
         <tr>
@@ -149,6 +149,7 @@
     </div>
 
   </main>
+
   <script src="main.js"></script>
   <script src="calendar.js"></script>
   <script src="todo.js"></script>

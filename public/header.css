@@ -14,7 +14,7 @@ body {
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(235, 186, 186);
+    background-color: rgb(175, 171, 171);  
 }
 
 
@@ -23,7 +23,7 @@ header {
     height: 8rem;
     position: fixed;
     top: 0;
-    background-color: rgb(61, 55, 53);
+    background-color: rgb(73, 69, 68);
     display: flex;
     justify-content:center;
     align-items: center;
@@ -36,6 +36,7 @@ header {
 }
 
 #header-items button {
+    position: absolute;
     margin: 0 200px;
     font-size: 20px;
     color: rgb(255, 255, 255); 
@@ -43,6 +44,7 @@ header {
     border: none; 
     cursor: pointer; 
   }
+
  
   @media (max-width: 1024px) {
 
@@ -92,3 +94,24 @@ header {
   }
    */
   
+
+
+  [data-cy='prev-month'] {
+    position: absolute;
+    left: 30%; 
+    top: 3.2rem; 
+}
+
+[data-cy='month-year'] {
+    position: absolute;
+    left: 60%; 
+    top: 3rem;
+    transform: translateX(-50%);
+}
+
+[data-cy='next-month'] {
+    position: absolute;
+    right: 10%; 
+    top: 3.2rem; 
+}
+

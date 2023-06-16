@@ -20,15 +20,27 @@ function initCalendar() {
 
   addCalendarCellListeners();
 }
-
+// bytte till denna så man kan klicka på cellen för att se todosen igen
 function addCalendarCellListeners() {
-  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-  calendarCells.forEach(calendarCell => {
-    calendarCell.addEventListener('click', event => {
-      filterTodoByCalendarCell(event);
+    const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+    calendarCells.forEach(calendarCell => {
+      calendarCell.addEventListener('click', event => {
+        const day = calendarCell.querySelector("[data-cy='calendar-cell-date']").textContent;
+        const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
+        renderFilteredTodoList(filteredTodos);
+      });
     });
-  });
-}
+  }
+  
+
+// function addCalendarCellListeners() {
+//   const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+//   calendarCells.forEach(calendarCell => {
+//     calendarCell.addEventListener('click', event => {
+//       filterTodoByCalendarCell(event);
+//     });
+//   });
+// }
 
 function changeMonth(change) {
   const { month, year } = state;
@@ -96,6 +108,9 @@ function updateCalendarCells() {
       var cell = document.createElement('td');
       cell.setAttribute('data-cy', 'calendar-cell');
 
+      // Hämta antalet todos för dagen
+      var todosForDay = getTodosForDay(year, month, dayCounter);
+
       if (i === 0 && j < startingDay) {
         cell.textContent = '';
       } else if (dayCounter > daysInMonth) {
@@ -106,6 +121,13 @@ function updateCalendarCells() {
         dateElement.setAttribute('data-cy', 'calendar-cell-date');
         cell.appendChild(dateElement);
 
+        // Lägg till siffran för antalet todos i kalendercellen
+        if (todosForDay.length > 0) {
+          var todosCountElement = document.createElement('span');
+          todosCountElement.textContent = todosForDay.length;
+          todosCountElement.setAttribute('data-cy', 'calendar-cell-todos');
+          cell.appendChild(todosCountElement);
+        }
         if (dayCounter === currentDay && month === currentDate.getMonth() && year == currentDate.getFullYear()) {
           cell.classList.add('current-day');
         }
@@ -120,6 +142,26 @@ function updateCalendarCells() {
 
   }
 }
+
+function getTodosForDay(year, month, day) {
+  var todosForDay = [];
+
+  for (const todo of todoList) {
+    var todoDate = new Date(todo.date);
+    if (
+      todoDate.getFullYear() === year &&
+      todoDate.getMonth() === month &&
+      todoDate.getDate() === day
+    ) {
+      todosForDay.push(todo);
+    }
+  }
+
+  return todosForDay;
+}
+
+
+
 
 
 

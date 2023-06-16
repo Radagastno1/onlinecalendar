@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(175, 171, 171);  
+}
+
+header {
+    width: 100%;
+    height: 8rem;
+    position: fixed;
+    top: 0;
+    background-color: rgb(73, 69, 68);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+#header-items {
+    display: flex;
+    color:rgb(255, 255, 255);
+    margin-left: 300px;
+}
+
+#header-items button {
+    position: absolute;
+    margin: 0 200px;
+    font-size: 20px;
+    color: rgb(255, 255, 255); 
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer; 
+  }
+
+  [data-cy='prev-month'] {
+    position: absolute;
+    left: 10px; /* Uppdatera detta värde enligt ditt behov */
+    top: 3rem; /* Uppdatera detta värde enligt ditt behov */
+}
+
+[data-cy='month-year'] {
+    position: absolute;
+    left: 50%; /* Uppdatera detta värde enligt ditt behov */
+    top: 3rem;
+    transform: translateX(-50%);
+}
+
+[data-cy='next-month'] {
+    position: absolute;
+    right: 10px; /* Uppdatera detta värde enligt ditt behov */
+    top: 3rem; /* Uppdatera detta värde enligt ditt behov */
+}
