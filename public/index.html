@@ -43,6 +43,8 @@
 
     <div class="todo-aside">
 
+      <button class="widen-button">Förstora</button>
+
       <div class="add-todo-div">
 
         <button id="add-todo-btn">
@@ -81,14 +83,6 @@
     </div>
 
   </aside>
-
-  <script>
-    var myAside = document.querySelector("aside");
-
-    myAside.addEventListener("click", function () {
-      myAside.classList.toggle("widen");
-    });
-  </script>
 
   <main>
 
@@ -159,6 +153,18 @@
   <script src="calendar.js"></script>
   <script src="todo.js"></script>
   <script src="today.js"></script>
+
+  <script>
+   var widenButton = document.querySelector(".widen-button");
+var asideElement = document.querySelector("aside");
+
+widenButton.addEventListener("click", function () {
+  asideElement.classList.toggle("widen");
+});
+
+  </script>
+
+
 </body>
 
 </html>

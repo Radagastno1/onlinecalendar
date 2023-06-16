@@ -202,7 +202,9 @@ li {
   white-space: nowrap;
 }
 
-
+.widen-button{
+  display: none;
+}
 
 /* delade regler */
 a {
@@ -225,6 +227,10 @@ i {
 }
 
 @media (max-width: 1024px) {
+
+  .widen-button{
+    display:block;
+  }
 
   aside {
     width: 50px;
@@ -249,7 +255,7 @@ i {
     padding:1px;
   }
 
-  aside.widen  .today-aside p {
+  aside.widen .today-aside p {
     font-size: 15px;
     padding:2px;
   }
@@ -263,7 +269,7 @@ i {
     font-size: 12px;
   }
 
-  aside.widen   .today-aside h3{
+  aside.widen .today-aside h3{
     font-size: 20px;
   }
 
@@ -272,7 +278,7 @@ i {
     font-size: 10px;
   }
 
- aside.widen .todo-list li {
+ .widen .todo-list li {
   font-size: 13px;
 }
 

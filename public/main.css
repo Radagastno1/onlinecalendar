@@ -38,13 +38,7 @@ main {
 }
 
 @media (max-width: 1024px) {
-    #calendar-table {
-        flex-shrink: -1;
-        justify-content: center;
-        font-size: 15px;
-        padding: 0 5px;
-        zoom: 0.8;
-    }
+
 }
 
 .day {
