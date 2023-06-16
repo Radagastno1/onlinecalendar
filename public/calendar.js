@@ -86,6 +86,7 @@ function getMonthNumber(month) {
   return months.indexOf(month.toLowerCase()) + 1;
 }
 
+
 function updateCalendarCells() {
   var calendarBody = document.getElementById('calendar-body');
   calendarBody.innerHTML = '';
@@ -139,7 +140,7 @@ function updateCalendarCells() {
     }
 
     calendarBody.appendChild(row);
-    addCalendarCellListeners() ;
+
   }
 }
 

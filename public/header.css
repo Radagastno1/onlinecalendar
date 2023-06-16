@@ -4,9 +4,19 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: rgb(235, 186, 186);
+html {
+    height: 100%;
+    max-width: 100%;
 }
+
+body {
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(175, 171, 171);  
+}
+
 
 header {
     width: 100%;
@@ -33,11 +43,74 @@ header {
     border: none; 
     cursor: pointer; 
   }
+
  
+  @media (max-width: 1024px) {
+
+    header {
+        width: 100%;
+    }
+
+    #header-items {
+        flex:1;
+        color:rgb(255, 255, 255);
+        margin-left: 250px;
+    }
+    
+    #header-items button {
+        margin: 0 50px;
+        font-size: 15px;
+        color: rgb(255, 255, 255); 
+        background-color: transparent; 
+        border: none; 
+        cursor: pointer; 
+      }
+  }
   
   
   
+  /* @media (max-width: 667px) {
+
+    header {
+        width: 100%;
+    }
+
+    #header-items {
+        flex:1;
+        color:rgb(255, 255, 255);
+        margin-left: 80px;
+    }
+    
+    #header-items button {
+        margin: 0 20px;
+        font-size: 5px;
+        color: rgb(255, 255, 255); 
+        background-color: transparent; 
+        border: none; 
+        cursor: pointer; 
+      }
+
+  }
+   */
   
-  
-  
-  
+
+
+  [data-cy='prev-month'] {
+    position: absolute;
+    left: 30%; 
+    top: 3.2rem; 
+}
+
+[data-cy='month-year'] {
+    position: absolute;
+    left: 60%; 
+    top: 3rem;
+    transform: translateX(-50%);
+}
+
+[data-cy='next-month'] {
+    position: absolute;
+    right: 10%; 
+    top: 3.2rem; 
+}
+
