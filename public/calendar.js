@@ -22,14 +22,28 @@ function initCalendar() {
   addCalendarCellListeners();
 }
 
+
 function addCalendarCellListeners() {
-  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-  calendarCells.forEach(calendarCell => {
-    calendarCell.addEventListener('click', event => {
-      filterTodoByCalendarCell(event);
+    const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+    calendarCells.forEach(calendarCell => {
+      calendarCell.addEventListener('click', event => {
+        const day = calendarCell.querySelector("[data-cy='calendar-cell-date']").textContent;
+        const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
+        renderFilteredTodoList(filteredTodos);
+      });
     });
-  });
-}
+  }
+  
+// >>>>>>> 6b63cf19057fe472ba9a5b5bc3e58da0f99a76c7
+
+// function addCalendarCellListeners() {
+//   const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
+//   calendarCells.forEach(calendarCell => {
+//     calendarCell.addEventListener('click', event => {
+//       filterTodoByCalendarCell(event);
+//     });
+//   });
+// }
 
 function changeMonth(change) {
   const { month, year } = state;

@@ -24,7 +24,7 @@ header {
     height: 8rem;
     position: fixed;
     top: 0;
-    background-color: rgb(73, 69, 68);
+    background-color: rgb(61, 55, 53);
     display: flex;
     justify-content:center;
     align-items: center;
@@ -37,7 +37,6 @@ header {
 }
 
 #header-items button {
-    position: absolute;
     margin: 0 200px;
     font-size: 20px;
     color: rgb(255, 255, 255); 
