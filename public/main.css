@@ -1,11 +1,12 @@
 body {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
 }
-
 main {
     justify-content: center;
-    margin-left: 350px;
+    /* margin-left: 350px; */
     /* width: calc(100% - 350px);  */
     width: auto;
     margin-top: 9rem;
@@ -21,7 +22,6 @@ main {
     justify-content: center;
     font-size: 18px;
     padding: 0 10px;
-    zoom: 0.8;
     overflow: auto;
     display: flex;
 }
@@ -59,10 +59,10 @@ main {
 [data-cy="calendar-cell"]:hover {
     background-color: rgb(255, 255, 255);
 }
-
+/* 
 [data-cy="calendar-cell"] {
     position: relative;
-}
+} */
 
 [data-cy="calendar-cell-todos"] {
     position: absolute;
