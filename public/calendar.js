@@ -317,7 +317,6 @@ function getTodosForDay(year, month, day) {
       todosForDay.push(todo);
     }
   }
-
   return todosForDay;
 }
 
