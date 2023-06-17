@@ -21,24 +21,54 @@ function initCalendar() {
     addCalendarCellListeners();
 }
 
-
 function addCalendarCellListeners() {
     const calendarBody = document.querySelector("[data-cy='calendar-body']");
-    let isCellClicked = false;
-
+    let selectedDate = null;
+  
     calendarBody.addEventListener('click', event => {
-        if (event.target.matches("[data-cy='calendar-cell']")) {
-            if (isCellClicked) {
-                location.reload();
-            } else {
-                const day = event.target.querySelector("[data-cy='calendar-cell-date']").textContent;
-                const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
-                renderFilteredTodoList(filteredTodos);
-                isCellClicked = true;
-            }
+      const cell = event.target.closest("[data-cy='calendar-cell']");
+      if (cell) {
+        const dayElement = cell.querySelector("[data-cy='calendar-cell-date']");
+        const day = dayElement.textContent;
+        const clickedDate = parseInt(day);
+  
+        if (selectedDate === clickedDate) {
+          selectedDate = null;
+          location.reload();
+        } else {
+          selectedDate = clickedDate;
         }
+  
+        const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
+        renderFilteredTodoList(filteredTodos);
+      }
     });
-}
+  }
+  
+  
+// function addCalendarCellListeners() {
+//     const calendarBody = document.querySelector("[data-cy='calendar-body']");
+//     let selectedDate = null;
+  
+//     calendarBody.addEventListener('click', event => {
+//       if (event.target.matches("[data-cy='calendar-cell']")) {
+//         const day = event.target.querySelector("[data-cy='calendar-cell-date']").textContent;
+//         const clickedDate = parseInt(day);
+  
+//         if (selectedDate === clickedDate) {
+//           selectedDate = null;
+//           location.reload();
+//         } else {
+//           selectedDate = clickedDate;
+//           const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
+//           renderFilteredTodoList(filteredTodos);
+//         }
+//       }
+//     });
+//   }
+  
+  
+
 
 
 // function addCalendarCellListeners() {
@@ -309,6 +339,20 @@ function getTodosForDay(year, month, day) {
 //   }
 // }
 
+function getTodosForDay(year, month, day) {
+  var todosForDay = [];
 
+  for (const todo of todoList) {
+    var todoDate = new Date(todo.date);
+    if (
+      todoDate.getFullYear() === year &&
+      todoDate.getMonth() === month &&
+      todoDate.getDate() === day
+    ) {
+      todosForDay.push(todo);
+    }
+  }
+  return todosForDay;
+}
 
 

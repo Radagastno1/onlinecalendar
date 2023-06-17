@@ -251,6 +251,9 @@ li{
   white-space: nowrap;
 }
 
+.shrink-button{
+  display: none;
+}
 
 /* delade regler */
 a{
