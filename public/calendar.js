@@ -21,9 +21,10 @@ function initCalendar() {
     addCalendarCellListeners();
 }
 
+let selectedDate = null;
+
 function addCalendarCellListeners() {
     const calendarBody = document.querySelector("[data-cy='calendar-body']");
-    let selectedDate = null;
   
     calendarBody.addEventListener('click', event => {
       const cell = event.target.closest("[data-cy='calendar-cell']");
