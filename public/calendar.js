@@ -27,7 +27,7 @@ function addCalendarCellListeners() {
   calendarCells.forEach(calendarCell => {
     calendarCell.addEventListener('click', event => {
       const day = calendarCell.querySelector("[data-cy='calendar-cell-date']").textContent;
-    //   const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
+      const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
       renderFilteredTodoList(filteredTodos);
     });
   });
@@ -268,6 +268,21 @@ function updateCalendarCells() {
 //   }
 // }
 
+function getTodosForDay(year, month, day) {
+  var todosForDay = [];
 
+  for (const todo of todoList) {
+    var todoDate = new Date(todo.date);
+    if (
+      todoDate.getFullYear() === year &&
+      todoDate.getMonth() === month &&
+      todoDate.getDate() === day
+    ) {
+      todosForDay.push(todo);
+    }
+  }
+
+  return todosForDay;
+}
 
 
