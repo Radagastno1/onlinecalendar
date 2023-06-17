@@ -21,17 +21,53 @@ function initCalendar() {
   addCalendarCellListeners();
 }
 
-
 function addCalendarCellListeners() {
-  const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-  calendarCells.forEach(calendarCell => {
-    calendarCell.addEventListener('click', event => {
-      const day = calendarCell.querySelector("[data-cy='calendar-cell-date']").textContent;
-      const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
-      renderFilteredTodoList(filteredTodos);
+    const calendarBody = document.querySelector("[data-cy='calendar-body']");
+    let selectedDate = null;
+  
+    calendarBody.addEventListener('click', event => {
+      const cell = event.target.closest("[data-cy='calendar-cell']");
+      if (cell) {
+        const dayElement = cell.querySelector("[data-cy='calendar-cell-date']");
+        const day = dayElement.textContent;
+        const clickedDate = parseInt(day);
+  
+        if (selectedDate === clickedDate) {
+          selectedDate = null;
+          location.reload();
+        } else {
+          selectedDate = clickedDate;
+        }
+  
+        const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
+        renderFilteredTodoList(filteredTodos);
+      }
     });
-  });
-}
+  }
+  
+  
+// function addCalendarCellListeners() {
+//     const calendarBody = document.querySelector("[data-cy='calendar-body']");
+//     let selectedDate = null;
+  
+//     calendarBody.addEventListener('click', event => {
+//       if (event.target.matches("[data-cy='calendar-cell']")) {
+//         const day = event.target.querySelector("[data-cy='calendar-cell-date']").textContent;
+//         const clickedDate = parseInt(day);
+  
+//         if (selectedDate === clickedDate) {
+//           selectedDate = null;
+//           location.reload();
+//         } else {
+//           selectedDate = clickedDate;
+//           const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
+//           renderFilteredTodoList(filteredTodos);
+//         }
+//       }
+//     });
+//   }
+  
+  
 
 // function addCalendarCellListeners() {
 //   const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
