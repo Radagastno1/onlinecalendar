@@ -27,7 +27,7 @@ function addCalendarCellListeners() {
   calendarCells.forEach(calendarCell => {
     calendarCell.addEventListener('click', event => {
       const day = calendarCell.querySelector("[data-cy='calendar-cell-date']").textContent;
-      const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
+    //   const filteredTodos = getTodosForDay(state.year, state.month, parseInt(day));
       renderFilteredTodoList(filteredTodos);
     });
   });
