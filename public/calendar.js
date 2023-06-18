@@ -4,7 +4,7 @@ const state = {
     month: new Date().getMonth(),
 }
 
-function initCalendar() {
+async function initCalendar() {
     var prevMonthButton = document.querySelector("[data-cy='prev-month']");
     var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
@@ -16,60 +16,37 @@ function initCalendar() {
         changeMonth(1);
     });
 
-    updateCalendarCells(); // Flytta denna rad hit
-
+    // Flytta denna rad hit
+    updateCalendarCells();
     addCalendarCellListeners();
-}
 
+
+}
+let dayTodos = [];
 let selectedDate = null;
 
 function addCalendarCellListeners() {
     const calendarBody = document.querySelector("[data-cy='calendar-body']");
-  
-    calendarBody.addEventListener('click', event => {
-      const cell = event.target.closest("[data-cy='calendar-cell']");
-      if (cell) {
-        const dayElement = cell.querySelector("[data-cy='calendar-cell-date']");
-        const day = dayElement.textContent;
-        const clickedDate = parseInt(day);
-  
-        if (selectedDate === clickedDate) {
-          selectedDate = null;
-          location.reload();
-        } else {
-          selectedDate = clickedDate;
-        }
-  
-        const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
-        renderFilteredTodoList(filteredTodos);
-      }
-    });
-  }
-  
-  
-// function addCalendarCellListeners() {
-//     const calendarBody = document.querySelector("[data-cy='calendar-body']");
-//     let selectedDate = null;
-  
-//     calendarBody.addEventListener('click', event => {
-//       if (event.target.matches("[data-cy='calendar-cell']")) {
-//         const day = event.target.querySelector("[data-cy='calendar-cell-date']").textContent;
-//         const clickedDate = parseInt(day);
-  
-//         if (selectedDate === clickedDate) {
-//           selectedDate = null;
-//           location.reload();
-//         } else {
-//           selectedDate = clickedDate;
-//           const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
-//           renderFilteredTodoList(filteredTodos);
-//         }
-//       }
-//     });
-//   }
-  
-  
 
+    calendarBody.addEventListener('click', event => {
+        const cell = event.target.closest("[data-cy='calendar-cell']");
+        if (cell) {
+            const dayElement = cell.querySelector("[data-cy='calendar-cell-date']");
+            const day = dayElement.textContent;
+            const clickedDate = parseInt(day);
+
+            if (selectedDate === clickedDate) {
+                selectedDate = null;
+                location.reload();
+            } else {
+                selectedDate = clickedDate;
+            }
+
+            const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
+            renderFilteredTodoList(filteredTodos);
+        }
+    });   
+}
 
 
 // function addCalendarCellListeners() {
@@ -100,10 +77,12 @@ function updateCalendarMonthLabel() {
 
     const monthYearElement = document.getElementById('month-year');
     monthYearElement.textContent = monthString + ' ' + year;
+    // updateCalendarCells();
 }
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+
 }
 
 function getMonthNumber(month) {
@@ -123,9 +102,8 @@ function getMonthNumber(month) {
     ];
 
     return months.indexOf(month.toLowerCase()) + 1;
+
 }
-
-
 
 function updateCalendarCells() {
     var calendarBody = document.querySelector("[data-cy='calendar-body']");
@@ -165,6 +143,8 @@ function updateCalendarCells() {
             var cell = document.createElement('td');
             cell.setAttribute('data-cy', 'calendar-cell');
 
+
+
             if (i === 0 && j < startingDay) {
                 cell.textContent = '';
             } else if (dayCounter > daysInMonth) {
@@ -183,20 +163,20 @@ function updateCalendarCells() {
                     cell.classList.remove('current-day');
                 }
 
-                //hämtar antalet todos 
-                const dayTodos = getTodosForDay(state.year, state.month, dayCounter);
-                const todoCount = dayTodos.length;
-
-                // Lägg till antalet todos som en siffra på cellen
-                if (todoCount > 0) {
-                    var todoCountElement = document.createElement('span');
-                    todoCountElement.textContent = todoCount;
-                    todoCountElement.classList.add('todo-count');
-                    cell.appendChild(todoCountElement);
-                }
+                dayTodos = getTodosForDay(state.year, state.month, dayCounter);
+                      // Visa "calendar-cell-todos" om det finns todos för dagen
+                      if (dayTodos.length > 0) {
+                        var todosElement = document.createElement('p');
+                        todosElement.textContent = dayTodos.length;
+                        todosElement.setAttribute('data-cy', 'calendar-cell-todos');
+                        cell.appendChild(todosElement);
+                        console.log(dayTodos.length);
+                        debugger;
+                    }
+            
 
                 dayCounter++;
-                
+
             }
 
             row.appendChild(cell);
@@ -204,7 +184,6 @@ function updateCalendarCells() {
 
         table.appendChild(row);
     }
-
 }
 
 
@@ -221,8 +200,7 @@ function getTodosForDay(year, month, day) {
             todosForDay.push(todo);
         }
     }
-
-    return todosForDay;
+    return todosForDay || [];
 }
 
 
@@ -340,20 +318,20 @@ function getTodosForDay(year, month, day) {
 //   }
 // }
 
-function getTodosForDay(year, month, day) {
-  var todosForDay = [];
+// function getTodosForDay(year, month, day) {
+//     var todosForDay = [];
 
-  for (const todo of todoList) {
-    var todoDate = new Date(todo.date);
-    if (
-      todoDate.getFullYear() === year &&
-      todoDate.getMonth() === month &&
-      todoDate.getDate() === day
-    ) {
-      todosForDay.push(todo);
-    }
-  }
-  return todosForDay;
-}
+//     for (const todo of todoList) {
+//         var todoDate = new Date(todo.date);
+//         if (
+//             todoDate.getFullYear() === year &&
+//             todoDate.getMonth() === month &&
+//             todoDate.getDate() === day
+//         ) {
+//             todosForDay.push(todo);
+//         }
+//     }
+//     return todosForDay;
+// }
 
 
