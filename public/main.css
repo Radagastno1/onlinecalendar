@@ -64,10 +64,10 @@ main {
     position: relative;
 } */
 
-[data-cy="calendar-cell-todos"] {
+.calendar-cell-todos {
     position: absolute;
-    top: 5px;
-    right: 7px;
+    top: 2px;
+    right: 2px;
     color: rgb(36, 36, 36);
     font-style: italic;
     font-weight: bolder;

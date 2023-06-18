@@ -229,6 +229,7 @@ function removeTodo(todo) {
     renderTodoList();
   }
   // renderTodoList();
+  updateCalendarCells();
 
 }
 //lägger en kommentar för att göra en commit 
