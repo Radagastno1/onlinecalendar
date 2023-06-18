@@ -2,9 +2,12 @@ const state = {
     selectedDate: null,
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
+    holidays: []
 }
 
 async function initCalendar() {
+
+    state.holidays = await getHolidays(state.year, state.month + 1); // Uppdatera holidays i state
     var prevMonthButton = document.querySelector("[data-cy='prev-month']");
     var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
@@ -45,7 +48,7 @@ function addCalendarCellListeners() {
             const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
             renderFilteredTodoList(filteredTodos);
         }
-    });   
+    });
 }
 
 
@@ -136,6 +139,9 @@ function updateCalendarCells() {
     table.appendChild(thead);
     calendarBody.appendChild(table);
 
+    const holidays = state.holidays;
+
+
     for (var i = 0; i < 6; i++) {
         var row = document.createElement('tr');
 
@@ -164,18 +170,34 @@ function updateCalendarCells() {
                 }
 
                 dayTodos = getTodosForDay(state.year, state.month, dayCounter);
-                      // Visa "calendar-cell-todos" om det finns todos för dagen
-                      if (dayTodos.length > 0) {
-                        var todosElement = document.createElement('p');
-                        todosElement.textContent = dayTodos.length;
-                        todosElement.setAttribute('data-cy', 'calendar-cell-todos');
-                        cell.appendChild(todosElement);
-                        console.log(dayTodos.length);
-                        debugger;
-                    }
-            
+                // Visa "calendar-cell-todos" om det finns todos för dagen
+                if (dayTodos.length > 0) {
+                    var todosElement = document.createElement('p');
+                    todosElement.textContent = dayTodos.length;
+                    todosElement.setAttribute('data-cy', 'calendar-cell-todos');
+                    cell.appendChild(todosElement);
+                    console.log(dayTodos.length);
+                    debugger;
+                }
+
+
+                // console.log(holidays);
+                // debugger;
+                const holiday = holidays.find((holiday) => {
+                    return holiday.datum === `${year}-${(month + 1).toString().padStart(2, '0')}-${dayCounter.toString().padStart(2, '0')}`;
+                });
+
+
+                if (holiday) {
+                    var holidayElement = document.createElement('p');
+                    holidayElement.textContent = holiday.helgdag;
+                    holidayElement.setAttribute('data-cy', 'calendar-cell-holiday');
+                    holidayElement.classList.add('holiday');
+                    cell.appendChild(holidayElement);
+                }
 
                 dayCounter++;
+
 
             }
 
@@ -203,7 +225,26 @@ function getTodosForDay(year, month, day) {
     return todosForDay || [];
 }
 
+async function getHolidays(year, month) {
+    const apiUrl = `https://sholiday.faboul.se/dagar/v2.1/${year}/${month}`;
+    try {
+        const response = await fetch(apiUrl);
 
+        const data = await response.json();
+
+        const holidays = data.dagar
+            .filter((d) => d.helgdag)
+            .map((d) => ({
+                helgdag: d.helgdag,
+                datum: d.datum,
+            }));
+        return holidays || [];
+
+    } catch {
+        console.log(response);
+        debugger;
+    }
+}
 // function updateCalendarCells() {
 //   const { month, year } = state;
 
