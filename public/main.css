@@ -49,18 +49,23 @@ main {
     background-color: rgb(53, 53, 53);
 }
 
-/* [data-cy="calendar-cell"] {
-    border: 1px solid black;
-    padding: 3.2vw 4vw;
-    grid-column: span;
-    cursor: pointer;
-} */
 [data-cy="calendar-cell"] {
     border: 1px solid black;
     padding: 3.2vw 4vw;
     grid-column: span;
     cursor: pointer;
     position: relative;
+  }
+
+  .holiday {
+    font-size: 8px;
+    overflow-wrap: break-word;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: red;
   }
 
 [data-cy="calendar-cell"]:hover {
