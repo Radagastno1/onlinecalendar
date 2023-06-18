@@ -8,6 +8,7 @@ const state = {
 async function initCalendar() {
 
     state.holidays = await getHolidays(state.year, state.month + 1); // Uppdatera holidays i state
+
     var prevMonthButton = document.querySelector("[data-cy='prev-month']");
     var nextMonthButton = document.querySelector("[data-cy='next-month']");
 
@@ -22,7 +23,6 @@ async function initCalendar() {
     // Flytta denna rad hit
     updateCalendarCells();
     addCalendarCellListeners();
-
 
 }
 let dayTodos = [];
@@ -61,12 +61,25 @@ function addCalendarCellListeners() {
 //   });
 // }
 
-function changeMonth(change) {
+// function changeMonth(change) {
+//     const { month, year } = state;
+
+//     var newDate = new Date(year, month + change, 1);
+//     state.month = newDate.getMonth();
+//     state.year = newDate.getFullYear();
+
+//     updateCalendarCells();
+//     updateCalendarMonthLabel();
+// }
+
+async function changeMonth(change) {
     const { month, year } = state;
 
     var newDate = new Date(year, month + change, 1);
     state.month = newDate.getMonth();
     state.year = newDate.getFullYear();
+
+    state.holidays = await getHolidays(state.year, state.month + 1); // Uppdatera helgdagarna i state
 
     updateCalendarCells();
     updateCalendarMonthLabel();
