@@ -49,12 +49,19 @@ main {
     background-color: rgb(53, 53, 53);
 }
 
+/* [data-cy="calendar-cell"] {
+    border: 1px solid black;
+    padding: 3.2vw 4vw;
+    grid-column: span;
+    cursor: pointer;
+} */
 [data-cy="calendar-cell"] {
     border: 1px solid black;
     padding: 3.2vw 4vw;
     grid-column: span;
     cursor: pointer;
-}
+    position: relative;
+  }
 
 [data-cy="calendar-cell"]:hover {
     background-color: rgb(255, 255, 255);
