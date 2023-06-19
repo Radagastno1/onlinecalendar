@@ -20,7 +20,6 @@ async function initCalendar() {
         changeMonth(1);
     });
 
-    // Flytta denna rad hit
     updateCalendarCells();
     addCalendarCellListeners();
 
@@ -58,7 +57,7 @@ async function changeMonth(change) {
     state.month = newDate.getMonth();
     state.year = newDate.getFullYear();
 
-    state.holidays = await getHolidays(state.year, state.month + 1); // Uppdatera helgdagarna i state
+    state.holidays = await getHolidays(state.year, state.month + 1); 
 
     updateCalendarCells();
     updateCalendarMonthLabel();
@@ -72,7 +71,6 @@ function updateCalendarMonthLabel() {
 
     const monthYearElement = document.getElementById('month-year');
     monthYearElement.textContent = monthString + ' ' + year;
-    // updateCalendarCells();
 }
 
 function capitalizeFirstLetter(string) {
@@ -141,8 +139,6 @@ function updateCalendarCells() {
             var cell = document.createElement('td');
             cell.setAttribute('data-cy', 'calendar-cell');
 
-
-
             if (i === 0 && j < startingDay) {
                 cell.textContent = '';
             } else if (dayCounter > daysInMonth) {
@@ -162,7 +158,7 @@ function updateCalendarCells() {
                 }
 
                 dayTodos = getTodosForDay(state.year, state.month, dayCounter);
-                // Visa "calendar-cell-todos" om det finns todos för dagen
+        
                 if (dayTodos.length > 0) {
                     var todosElement = document.createElement('p');
                     todosElement.textContent = dayTodos.length;
@@ -172,9 +168,6 @@ function updateCalendarCells() {
                     debugger;
                 }
 
-
-                // console.log(holidays);
-                // debugger;
                 const holiday = holidays.find((holiday) => {
                     return holiday.datum === `${year}-${(month + 1).toString().padStart(2, '0')}-${dayCounter.toString().padStart(2, '0')}`;
                 });
