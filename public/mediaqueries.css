@@ -1,0 +1,9 @@
+.items {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
