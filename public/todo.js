@@ -194,6 +194,7 @@ function saveTodo() {
 
     const todosUl = document.querySelector('#todo-list');
     todosUl.classList.add('todo-reveal-list');
+    renderTodoSound();
   }
 }
 
@@ -426,3 +427,19 @@ function getTodaysDate() {
   return today.toISOString().split('T')[0];
 }
 
+function renderTodoSound() {
+  // en ljudfil skapas som säger "you added a new todo"
+  var speak = new SpeechSynthesisUtterance('you added a new too doo');
+  speak.voiceURI = 'Google US English';
+  speak.lang = 'en-US';
+  speak.rate = 0.8;
+  speechSynthesis.speak(speak);
+
+  //exportera till audiofil
+  speak.onend = function (event) {
+    var blob = new Blob([new Uint8Array(speak.wav)]);
+    var url = URL.createObjectURL(blob);
+    var audio = new Audio(url);
+    audio.play();  //här spelas den upp
+  };
+}

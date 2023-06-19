@@ -28,6 +28,8 @@ header {
 #header-items button {
     position: absolute;
     margin: 0 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     font-size: 20px;
     color: rgb(255, 255, 255); 
     background-color: transparent; 
