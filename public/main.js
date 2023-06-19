@@ -6,7 +6,7 @@ function main() {
   initCalendar();
 
   //anropar funktioner från todo
-  
+
   addEventListeners();
   const todosUl = document.querySelector('#todo-list');
   todosUl.classList.remove('todo-reveal-list');
