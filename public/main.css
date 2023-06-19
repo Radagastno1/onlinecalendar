@@ -7,7 +7,6 @@ body {
 main {
     justify-content: center;
     margin-left: 350px;
-    /* width: calc(100% - 350px);  */
     width: auto;
     margin-top: 9rem;
     height: auto;
@@ -71,10 +70,6 @@ main {
 [data-cy="calendar-cell"]:hover {
     background-color: rgb(255, 255, 255);
 }
-/* 
-[data-cy="calendar-cell"] {
-    position: relative;
-} */
 
 .calendar-cell-todos {
     position: absolute;
