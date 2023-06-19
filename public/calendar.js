@@ -182,6 +182,10 @@ function updateCalendarCells() {
                     cell.classList.remove('current-day');
                 }
 
+                if (j === 6) {
+                    cell.classList.add('sunday-cell');
+                }
+
                 dayTodos = getTodosForDay(state.year, state.month, dayCounter);
                 // Visa "calendar-cell-todos" om det finns todos för dagen
                 if (dayTodos.length > 0) {
@@ -207,6 +211,9 @@ function updateCalendarCells() {
                     holidayElement.setAttribute('data-cy', 'calendar-cell-holiday');
                     holidayElement.classList.add('holiday');
                     cell.appendChild(holidayElement);
+                }
+                if (holiday) {
+                    cell.classList.add('holiday-cell');
                 }
 
                 dayCounter++;
