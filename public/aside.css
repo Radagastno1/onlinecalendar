@@ -9,7 +9,9 @@ aside {
   display: flexbox;
   height: 100%;
   width: 350px;
+  overflow-y: auto; /* Lägg till scroll-funktion */
 }
+
 
 .todo-aside {
 background-color: rgb(211, 145, 158);
