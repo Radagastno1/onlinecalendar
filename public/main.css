@@ -7,7 +7,6 @@ body {
 main {
     justify-content: center;
     margin-left: 350px;
-    /* width: calc(100% - 350px);  */
     width: auto;
     margin-top: 9rem;
     height: auto;
@@ -71,16 +70,12 @@ main {
 [data-cy="calendar-cell"]:hover {
     background-color: rgb(255, 255, 255);
 }
-/* 
-[data-cy="calendar-cell"] {
-    position: relative;
-} */
 
-.calendar-cell-todos {
+[data-cy="calendar-cell-todos"] {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    color: rgb(36, 36, 36);
+    top: 6px; 
+     right: 6px; 
+    color: black(36, 36, 36);
     font-style: italic;
-    font-weight: bolder;
+    font-weight: bold;
 }
