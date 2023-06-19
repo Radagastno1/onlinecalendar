@@ -158,18 +158,18 @@ function updateCalendarCells() {
     for (var i = 0; i < 6; i++) {
         var row = document.createElement('tr');
 
+        var isEmptyRow = true;
+
         for (var j = 0; j < 7; j++) {
             var cell = document.createElement('td');
             cell.setAttribute('data-cy', 'calendar-cell');
-
-
 
             if (i === 0 && j < startingDay) {
                 cell.textContent = '';
             } else if (dayCounter > daysInMonth) {
                 cell.textContent = '';
             } else {
-
+                isEmptyRow = false;
                 var dateElement = document.createElement('span');
                 dateElement.textContent = dayCounter;
                 dateElement.setAttribute('data-cy', 'calendar-cell-date');
@@ -211,16 +211,15 @@ function updateCalendarCells() {
 
                 dayCounter++;
 
-
             }
 
             row.appendChild(cell);
         }
 
-        table.appendChild(row);
+        if (!isEmptyRow)
+            table.appendChild(row);
     }
 }
-
 
 function getTodosForDay(year, month, day) {
     var todosForDay = [];
