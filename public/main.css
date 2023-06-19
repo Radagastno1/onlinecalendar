@@ -57,15 +57,23 @@ main {
   }
 
   .holiday {
-    font-size: 8px;
+    font-size: 12px;
+    padding: 2px;
+    background-color: white;
     overflow-wrap: break-word;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
-    color: red;
+    color: rgb(215, 142, 142);
+    opacity: 0.6;
   }
+
+  [data-cy="calendar-cell"].holiday-cell, [data-cy="calendar-cell"].sunday-cell {
+    color: rgb(182, 36, 36);
+  }
+  
 
 [data-cy="calendar-cell"]:hover {
     background-color: rgb(255, 255, 255);
