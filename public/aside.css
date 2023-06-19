@@ -14,10 +14,11 @@ aside {
 .todo-aside {
 background-color: rgb(211, 145, 158);
 margin-top: 160px; 
-height: calc(100% - 100px); 
+height: calc(100% - 228px); 
 display: flex;
 flex-direction: column;
 align-items: flex-start;
+overflow-y: auto;
 }
 
 .todo-form {
@@ -120,11 +121,18 @@ text-transform: uppercase;
   font-family: "Helvetica", Arial, sans-serif;
   display: flex;
   flex-direction: row;
-  overflow: auto;
+  /* overflow: auto; */
   flex-wrap: wrap;
   max-width: 350px;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
   overflow-x: auto;
+  /* overflow-y: scroll; */
+}
+
+/* gör skrollern vid todo-aside osynlig */
+.todo-aside::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; 
 }
 
 .todo-list li {
