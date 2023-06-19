@@ -40,9 +40,7 @@ function presentDateAndTime() {
     }
   }
   
-  // Uppdatera klockan varje sekund
   setInterval(updateClock, 1000);
   
-  // Uppdatera klockan direkt vid laddning av sidan
   updateClock();
   
