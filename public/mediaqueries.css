@@ -31,6 +31,7 @@ aside {
 
     .main-container {
         margin-left: 0;
+        overflow: hidden;
     }
 
     header {
@@ -45,11 +46,24 @@ aside {
         text-align: center;
     }
 
-    [data-cy='prev-month'],
-    [data-cy='month-year'],
-    [data-cy='next-month'] {
+    [data-cy='month-year'] {
+        left: 200px;
         font-size: 16px; /* Justera fontstorleken för att passa skärmen */
     }
+
+    [data-cy='next-month'] {
+        right: -20px;
+    }
+
+    [data-cy='prev-month'] {
+        left: 5px;
+    }
+
+    /* [data-cy='prev-month'],
+    [data-cy='month-year'],
+    [data-cy='next-month'] { */
+        /* font-size: 16px; Justera fontstorleken för att passa skärmen */
+    /* } */
 
     #calendar-table {
         justify-content: center; /* Centrera kalendern horisontellt */
@@ -62,6 +76,10 @@ aside {
         padding-bottom: 10px; /* Justera padding för att passa skärmen */
     }
 
+    .holiday {
+        font-size: 5px;
+    }
+
     main {
         margin-left: 0; /* Ta bort marginalen till vänster */
         width: 100%; /* Anpassa bredden för att fylla tillgängligt utrymme */
@@ -70,7 +88,7 @@ aside {
     #calendar-table {
         width: 100%; /* Anpassa bredden för att fylla tillgängligt utrymme */
         padding: 0 10px; /* Justera padding på sidorna */
-        font-size: 16px; /* Justera fontstorleken för att göra kalendern mindre */
+        font-size: 14px; /* Justera fontstorleken för att göra kalendern mindre */
     }
 }
 
