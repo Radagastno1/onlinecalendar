@@ -58,7 +58,7 @@ main {
   }
 
   .holiday {
-    font-size: 10px;
+    font-size: 12px;
     padding: 2px;
     background-color: white;
     overflow-wrap: break-word;
@@ -68,10 +68,11 @@ main {
     right: 0;
     text-align: center;
     color: rgb(215, 142, 142);
+    opacity: 0.6;
   }
 
   [data-cy="calendar-cell"].holiday-cell, [data-cy="calendar-cell"].sunday-cell {
-    color: rgb(147, 29, 29);
+    color: rgb(182, 36, 36);
   }
   
 
