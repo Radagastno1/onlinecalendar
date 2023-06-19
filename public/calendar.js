@@ -51,27 +51,6 @@ function addCalendarCellListeners() {
     });
 }
 
-
-// function addCalendarCellListeners() {
-//   const calendarCells = document.querySelectorAll("[data-cy='calendar-cell']");
-//   calendarCells.forEach(calendarCell => {
-//     calendarCell.addEventListener('click', event => {
-//       filterTodoByCalendarCell(event);
-//     });
-//   });
-// }
-
-// function changeMonth(change) {
-//     const { month, year } = state;
-
-//     var newDate = new Date(year, month + change, 1);
-//     state.month = newDate.getMonth();
-//     state.year = newDate.getFullYear();
-
-//     updateCalendarCells();
-//     updateCalendarMonthLabel();
-// }
-
 async function changeMonth(change) {
     const { month, year } = state;
 
