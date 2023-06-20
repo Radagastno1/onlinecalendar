@@ -15,10 +15,8 @@
 </head>
 
 <body>
-
   <header>
     <div id="header-items">
-
       <button data-cy="prev-month" title="Förgående månad">
         <i class="fas fa-chevron-left"></i>
       </button>
@@ -26,65 +24,42 @@
       <button data-cy="next-month" title="Nästa månad">
         <i class="fas fa-chevron-right"></i>
       </button>
-
-
     </div>
   </header>
-
   <aside>
-
     <div class="today-aside" data-cy="welcome-segment">
       <h3>Dagens Datum</h3>
       <p id="time"></p>
       <p id="day"></p>
       <p id="date"></p>
     </div>
-
-
-
     <div class="todo-aside">
-
       <button class="shrink-button">Förminska</button>
-
       <div class="add-todo-div">
-
         <button id="add-todo-btn">
           Lägg till todo i kalender
           <i class="fas fa-plus" class="plus-icon" data-cy="todo-reveal-form"></i>
         </button>
-
         <form id="add-todo-form" class="todo-form" action="">
-
           <textarea id="title-input" data-cy="todo-title-input" placeholder="Walk the dog..."></textarea>
           <div class="date-submit-div">
             <input type="date" data-cy="todo-date-input" id="date-input">
             <button id="save-todo-button" data-cy="save-todo-button" type="submit">Add todo</button>
           </div>
-
         </form>
-
       </div>
-
       <div id="todo-list-div" class="alltodos-div">
-
         <button id="show-todos-btn">
           Mina todos
           <i class="fas fa-tasks" class="todo-icon"></i>
         </button>
-
         <div class="todo-list">
           <ul id="todo-list" class="todo-reveal-list" data-cy="todo-list">
           </ul>
-
         </div>
-
       </div>
-
     </div>
-
   </aside>
-
-
   <main>
     <table id="calendar-table">
       <thead>
@@ -144,7 +119,6 @@
   <script src="calendar.js"></script>
   <script src="todo.js"></script>
   <script src="today.js"></script>
-
   <script>
     var shrinkButton = document.querySelector(".shrink-button");
     var asideElement = document.querySelector("aside");
@@ -152,10 +126,7 @@
     shrinkButton.addEventListener("click", function () {
       asideElement.classList.toggle("shrink");
     });
-
   </script>
-
-
 </body>
 
 </html>
