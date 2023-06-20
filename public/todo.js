@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', main);
 
 let todoList = [];
 let popupElement;
+const speechSynthesis = window.speechSynthesis;
 
 function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
@@ -15,9 +16,16 @@ function showAddTodoForm() {
 function showListOfTodos() {
   const showTodosButton = document.querySelector('#show-todos-btn');
   const todosUl = document.querySelector('#todo-list');
+  const readTodosButton = document.querySelector('#read-todos-btn');
 
-  showTodosButton.addEventListener('click', () => {
+  showTodosButton.addEventListener('click', (event) => {
     todosUl.classList.toggle('todo-reveal-list');
+  });
+
+  readTodosButton.addEventListener('click', (event) => {
+    if (!todosUl.classList.contains('todo-reveal-list')) {
+      startListening();
+    }
   });
 }
 
@@ -36,13 +44,11 @@ function getDataFromLS() {
   }
 }
 
-
 function renderTodoList() {
 
   const todoUl = document.querySelector('[data-cy="todo-list"]');
 
   todoUl.innerHTML = '';
-
 
   let previousDate = null;
   if (todoList.length > 0) {
@@ -67,7 +73,6 @@ function renderTodoList() {
       link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
 
-      // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
       removeButton.setAttribute('data-cy', 'delete-todo-button');
@@ -81,8 +86,6 @@ function renderTodoList() {
 
       removeButton.appendChild(removeIcon);
 
-      // redigera knapp
-
       const editButton = document.createElement('button');
       editButton.classList.add('todo-edit-button');
       editButton.setAttribute('data-cy', 'edit-todo-button');
@@ -93,7 +96,6 @@ function renderTodoList() {
       editButton.addEventListener('click', () => {
         editTodoPopUp(todo);
       });
-
 
       editButton.appendChild(editIcon);
 
@@ -168,7 +170,6 @@ function showTodoPopup(todo) {
   editButton.addEventListener('click', () => {
     editTodoPopUp(todo);
   });
-
 
   //och här sätts hela popupen som barn till DOMen
   document.body.appendChild(divElement);
@@ -399,7 +400,6 @@ function renderFilteredTodoList(filteredTodos) {
         editTodoPopUp(todo);
       });
 
-
       editButton.appendChild(editIcon);
 
       link.addEventListener('click', () => {
@@ -419,7 +419,6 @@ function renderFilteredTodoList(filteredTodos) {
     textLi.textContent = "Det finns ingen todo än.."
     todoUl.appendChild(textLi);
   }
-
 }
 
 function getTodaysDate() {
@@ -434,12 +433,46 @@ function renderTodoSound() {
   speak.lang = 'en-US';
   speak.rate = 0.8;
   speechSynthesis.speak(speak);
-
-  //exportera till audiofil
-  speak.onend = function (event) {
-    var blob = new Blob([new Uint8Array(speak.wav)]);
-    var url = URL.createObjectURL(blob);
-    var audio = new Audio(url);
-    audio.play();  //här spelas den upp
-  };
 }
+
+function readTodos() {
+  var todoText = ""; 
+ 
+  todoList.forEach(function (todo) {
+    if (todo.title !== '') {
+      var todoString = todo.date + ': ' + todo.title;
+      todoText += todoString + '. ';
+    }
+  });
+
+  var speak = new SpeechSynthesisUtterance(todoText);
+  speak.voiceURI = 'Google US English';
+  speak.lang = 'en-US';
+  speechSynthesis.speak(speak);
+
+}
+
+function startListening() {
+  
+  var question = 'Do you want me to read your too doos?';
+  var speak = new SpeechSynthesisUtterance(question);
+  speak.voiceURI = 'Siri Female';
+  speak.lang = 'en-US';
+
+  speak.onend = function () {
+    var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition.lang = 'en-US';
+
+    recognition.onresult = function (event) {
+      var transcript = event.results[0][0].transcript.toLowerCase();
+      // alert(transcript);
+      if (transcript === 'yes' || transcript === 'jess' || transcript === 'jes' || transcript === "yes.") {
+        readTodos();
+      }
+    };
+    recognition.start();
+  };
+  speechSynthesis.speak(speak);
+}
+
+
