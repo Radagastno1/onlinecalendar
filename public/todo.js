@@ -336,8 +336,8 @@ function filterTodoByCalendarCell(event) {
   const adjustedMonth = month + 1; // justerar månadsvärdet sålänge då det är fel
   const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-  console.log(date);
-  debugger;
+  // console.log(date); // kommenterade ut denna
+  // debugger;
   // och rendera en lista med endast de todos som har det datumet
   const filteredTodos = todoList.filter(todo => todo.date === date);
   renderFilteredTodoList(filteredTodos);
