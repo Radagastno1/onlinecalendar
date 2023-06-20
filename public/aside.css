@@ -180,7 +180,8 @@ text-transform: uppercase;
   top: 0;
   left: 0;
   display: flexbox;
-  height: 128px;
+  /* height: 128px; */
+  height: 7rem;
   width: 350px;
   padding: 20px; 
   box-sizing: border-box; 

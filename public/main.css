@@ -10,7 +10,7 @@ main {
     justify-content: center;
     margin-left: 350px;
     width: auto;
-    margin-top: 9rem;
+    margin-top: 7.5rem;
     height: auto;
     background-color: rgb(214, 196, 203);
     display: flex;
@@ -32,8 +32,8 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin-top: 10px;
+    /* padding: 10px;
+    margin-top: 0px; */
     position: relative;
 }
 
@@ -52,7 +52,7 @@ main {
 
 [data-cy="calendar-cell"] {
     border: 1px solid black;
-    padding: 3.2vw 4vw;
+    padding: 2.8vw 3.6vw;
     grid-column: span;
     cursor: pointer;
     position: relative;
@@ -84,7 +84,7 @@ main {
 [data-cy="calendar-cell-todos"] {
     position: absolute;
     top: 6px; 
-     right: 6px; 
+    right: 6px; 
     color: black(36, 36, 36);
     font-style: italic;
     font-weight: bold;
