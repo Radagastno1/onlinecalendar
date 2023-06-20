@@ -47,18 +47,19 @@ aside {
     }
 
     [data-cy='month-year'] {
-        left: 200px;
+        left: 190px; /*ändrade plats på denna*/
         font-size: 16px; /* Justera fontstorleken för att passa skärmen */
     }
 
     [data-cy='next-month'] {
-        right: -20px;
+        right: -70px;
     }
 
     [data-cy='prev-month'] {
-        left: 5px;
+        left: -70px;
     }
 
+    /* utkommenterade denna och gjorde ny för att justera var för sig
     /* [data-cy='prev-month'],
     [data-cy='month-year'],
     [data-cy='next-month'] { */

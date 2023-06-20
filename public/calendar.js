@@ -170,8 +170,6 @@ function updateCalendarCells() {
                     todosElement.textContent = dayTodos.length;
                     todosElement.setAttribute('data-cy', 'calendar-cell-todos');
                     cell.appendChild(todosElement);
-                    console.log(dayTodos.length);
-                    debugger;
                 }
 
                 const holiday = holidays.find((holiday) => {
