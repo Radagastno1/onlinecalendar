@@ -10,11 +10,9 @@ aside {
   height: 100%;
   width: 350px;
 }
-
-
 .todo-aside {
 background-color: rgb(211, 145, 158);
-margin-top: 160px; 
+margin-top: 140px; 
 height: calc(100% - 228px); 
 display: flex;
 flex-direction: column;
