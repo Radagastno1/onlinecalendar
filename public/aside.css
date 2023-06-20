@@ -53,6 +53,20 @@ overflow: hidden;
 transition: width 0.3s ease;
 }
 
+.my-todos-div{
+  display: flex;
+}
+#read-todos-btn{
+  margin-left: 15px;
+  font-size: 16px;
+  background-color: rgb(211, 145, 158);
+  border: none;
+  opacity: 0.8;
+}
+/* .fa-headphones{
+  margin-left: 20px;
+} */
+
 #add-todo-btn::before,
 #show-todos-btn::before {
 content: "";

@@ -49,10 +49,17 @@
         </form>
       </div>
       <div id="todo-list-div" class="alltodos-div">
-        <button id="show-todos-btn">
-          Mina todos
-          <i class="fas fa-tasks" class="todo-icon"></i>
-        </button>
+
+        <div class="my-todos-div">
+          <button id="show-todos-btn">
+            Mina todos
+              <i class="fas fa-tasks" class="todo-icon"></i>
+          </button>
+          <button id="read-todos-btn" aria-label="headphone icon">
+            <i class="fa-solid fa-headphones" id="headphone-icon"></i>
+          </button>
+        </div>
+    
         <div class="todo-list">
           <ul id="todo-list" class="todo-reveal-list" data-cy="todo-list">
           </ul>
