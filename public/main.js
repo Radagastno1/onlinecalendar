@@ -9,10 +9,5 @@ function main() {
   initTodos();
 
   //anropar funktioner från today
-  presentDateAndTime();
-  updateClock();
-
-
-
-
+  initToday();
 }
