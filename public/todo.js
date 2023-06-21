@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', main);
 
+//variabler som ska kunna nås från flera metoder 
 let todoList = [];
 let popupElement;
 const speechSynthesis = window.speechSynthesis;
 
+//när man klickar på "lägg till todo" så togglas formuläret där man skapar en todo
 function showAddTodoForm() {
   const addTodoButton = document.querySelector('#add-todo-btn');
   const addTodoForm = document.querySelector('#add-todo-form');
@@ -13,6 +15,8 @@ function showAddTodoForm() {
   });
 }
 
+//när man klickar på 'mina todos' så togglas listan. 
+//när man klickar på 'headphones' så startar röst samt taligenkänningen
 function showListOfTodos() {
   const showTodosButton = document.querySelector('#show-todos-btn');
   const todosUl = document.querySelector('#todo-list');
@@ -34,6 +38,7 @@ function addEventListeners() {
   saveButton.addEventListener('click', saveTodo);
 }
 
+//returnerar lista med todos om finns i LS annars tom array
 function getDataFromLS() {
   const storedTodoList = localStorage.getItem('todos');
   if (storedTodoList) {
@@ -44,6 +49,7 @@ function getDataFromLS() {
   }
 }
 
+//element skapas för todolistan och todos visas om finns annars en text
 function renderTodoList() {
 
   const todoUl = document.querySelector('[data-cy="todo-list"]');
@@ -179,6 +185,7 @@ function showTodoPopup(todo) {
   closePopupIcon.addEventListener('click', closePopup);
 }
 
+//todo sparas till publika listan samt till LS
 function saveTodo() {
   const todoTitle = document.querySelector('#title-input').value;
   const todoDate = document.querySelector('#date-input').value;
