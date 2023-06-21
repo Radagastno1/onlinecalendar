@@ -1,6 +1,7 @@
 function initToday() {
   updateClock();
   setInterval(updateClock, 1000);
+  //kommentar för att göra en till push
 }
 
 function presentDateAndTime() {
