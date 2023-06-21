@@ -11,7 +11,10 @@
   <link rel="stylesheet" href="aside.css">
   <link rel="stylesheet" href="mediaqueries.css">
   <script src="https://kit.fontawesome.com/34c1195b6e.js" crossorigin="anonymous"></script>
-
+  <script src="main.js"></script>
+  <script src="calendar.js"></script>
+  <script src="todo.js"></script>
+  <script src="today.js"></script>
 </head>
 
 <body>
@@ -34,7 +37,6 @@
       <p id="date"></p>
     </div>
     <div class="todo-aside">
-      <button class="shrink-button">Förminska</button>
       <div class="add-todo-div">
         <button id="add-todo-btn">
           Lägg till todo i kalender
@@ -53,13 +55,13 @@
         <div class="my-todos-div">
           <button id="show-todos-btn">
             Mina todos
-              <i class="fas fa-tasks" class="todo-icon"></i>
+            <i class="fas fa-tasks" class="todo-icon"></i>
           </button>
           <button id="read-todos-btn" aria-label="headphone icon">
             <i class="fa-solid fa-headphones" id="headphone-icon"></i>
           </button>
         </div>
-    
+
         <div class="todo-list">
           <ul id="todo-list" class="todo-reveal-list" data-cy="todo-list">
           </ul>
@@ -74,66 +76,10 @@
         </tr>
       </thead>
       <tbody id="calendar-body-id" data-cy="calendar-body">
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <!-- code from calendar.js -->
       </tbody>
     </table>
   </main>
-  <script src="main.js"></script>
-  <script src="calendar.js"></script>
-  <script src="todo.js"></script>
-  <script src="today.js"></script>
-  <script>
-    var shrinkButton = document.querySelector(".shrink-button");
-    var asideElement = document.querySelector("aside");
-
-    shrinkButton.addEventListener("click", function () {
-      asideElement.classList.toggle("shrink");
-    });
-  </script>
 </body>
 
 </html>

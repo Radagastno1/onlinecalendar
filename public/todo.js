@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', main);
-
-//variabler som ska kunna nås från flera metoder 
+//global scope
 let todoList = [];
 let popupElement;
 const speechSynthesis = window.speechSynthesis;
@@ -11,6 +9,13 @@ function initTodos() {
 
   addEventListeners();
   renderTodoList();
+}
+
+function addEventListeners() {
+  const saveButton = document.querySelector('#save-todo-button');
+  saveButton.addEventListener('click', saveTodo);
+  addEventListenerToAddTodoButton();
+  addEventListenerToShowTodosButton();
 }
 
 //när man klickar på "lägg till todo" så togglas formuläret där man skapar en todo
@@ -41,13 +46,6 @@ function addEventListenerToShowTodosButton() {
   });
 }
 
-function addEventListeners() {
-  const saveButton = document.querySelector('#save-todo-button');
-  saveButton.addEventListener('click', saveTodo);
-  addEventListenerToAddTodoButton();
-  addEventListenerToShowTodosButton();
-}
-
 //returnerar lista med todos om finns i LS annars tom array
 function getDataFromLS() {
   const storedTodoList = localStorage.getItem('todos');
@@ -59,12 +57,12 @@ function getDataFromLS() {
   }
 }
 
-//element skapas för todolistan och todos visas om finns annars en text
 function filterTodos(date) {
   const filteredTodos = todoList.filter(todo => todo.date === date);
   return filteredTodos;
 }
 
+//element skapas för todolistan och todos visas om finns annars en text
 function renderTodoList(filteredTodos = null) {
 
   const todoUl = document.querySelector('[data-cy="todo-list"]');
@@ -76,6 +74,7 @@ function renderTodoList(filteredTodos = null) {
     todosToRender = filteredTodos;
   }
 
+  //previousdate håller föregående todos datum för att se om de ingår i samma datum, annars ny datum rubrik
   let previousDate = null;
   if (todosToRender.length > 0) {
     todosToRender.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -99,7 +98,6 @@ function renderTodoList(filteredTodos = null) {
       link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
 
-      // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
       removeButton.setAttribute('data-cy', 'delete-todo-button');
@@ -145,7 +143,7 @@ function renderTodoList(filteredTodos = null) {
   }
 }
 
-// här skapas popup med element för varje gång man klickar på todo, finns bättre sätt
+// här skapas popup med element för varje gång man klickar på todo, finns säkert bättre sätt
 // tex att ha en template i en html-fil som laddas in som mall för popup
 // men detta för att öva och förstå vad man kan göra med javascript
 function showTodoPopup(todo) {
@@ -179,7 +177,6 @@ function showTodoPopup(todo) {
   editButton.setAttribute('id', 'edit-button');
   editButton.textContent = 'Redigera';
 
-
   popupHeader.appendChild(dateElement);
   popupHeader.appendChild(icon);
 
@@ -188,7 +185,6 @@ function showTodoPopup(todo) {
   divElement.appendChild(title);
   divElement.appendChild(removeButton);
   divElement.appendChild(editButton);
-
 
   removeButton.addEventListener('click', () => {
     removeTodo(todo);
@@ -258,11 +254,8 @@ function removeTodo(todo) {
   else {
     renderTodoList();
   }
-  // renderTodoList();
   updateCalendarCells();
-
 }
-//lägger en kommentar för att göra en commit 
 
 function editTodoPopUp(todo) {
 
@@ -320,7 +313,6 @@ function editTodoPopUp(todo) {
   popupHeader.appendChild(popupDateInput);
   popupHeader.appendChild(icon);
 
-  //här sätter jag de olika elementen till själva popupen
   divElement.appendChild(popupHeader);
   divElement.appendChild(popupTitleInput);
   divElement.appendChild(removeButton);
@@ -357,18 +349,6 @@ function closePopup() {
   }
 }
 
-function filterTodoByCalendarCell(event) {
-  const calendarCell = event.target;
-  const day = calendarCell.textContent;
-  const { month, year } = state;
-  const adjustedMonth = month + 1; // justerar månadsvärdet sålänge då det är fel
-  const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-  // och rendera en lista med endast de todos som har det datumet
-  const filteredTodos = filterTodos(todoList);
-  renderTodoList(filteredTodos);
-}
-
 function getTodaysDate() {
   var today = new Date();
   return today.toISOString().split('T')[0];
@@ -400,20 +380,20 @@ function readTodos() {
 
 }
 
+//när man klickar på headphones lyssnar den på om man svarar "yes" och isåfall läser upp todos i listan
 function startListening() {
-
   var question = 'Do you want me to read your too doos?';
   var speak = new SpeechSynthesisUtterance(question);
   speak.voiceURI = 'Siri Female';
   speak.lang = 'en-US';
 
+  //när den pratat klart
   speak.onend = function () {
     var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.lang = 'en-US';
 
     recognition.onresult = function (event) {
       var transcript = event.results[0][0].transcript.toLowerCase();
-      // alert(transcript);
       if (transcript === 'yes' || transcript === 'jess' || transcript === 'jes' || transcript === "yes.") {
         readTodos();
       }
