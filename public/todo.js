@@ -50,16 +50,26 @@ function getDataFromLS() {
 }
 
 //element skapas för todolistan och todos visas om finns annars en text
-function renderTodoList() {
+function filterTodos(date) {
+  const filteredTodos = todoList.filter(todo => todo.date === date);
+  return filteredTodos;
+}
+
+function renderTodoList(filteredTodos = null) {
 
   const todoUl = document.querySelector('[data-cy="todo-list"]');
 
   todoUl.innerHTML = '';
 
+  let todosToRender = todoList;
+  if (filteredTodos !== null) {
+    todosToRender = filteredTodos;
+  }
+
   let previousDate = null;
-  if (todoList.length > 0) {
-    todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
-    for (const todo of todoList) {
+  if (todosToRender.length > 0) {
+    todosToRender.sort((a, b) => new Date(a.date) - new Date(b.date));
+    for (const todo of todosToRender) {
       if (todo.date !== previousDate) {
         const title = document.createElement('h3');
         title.textContent = todo.date ?? "Laddar datum...";
@@ -79,6 +89,7 @@ function renderTodoList() {
       link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
 
+      // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
       removeButton.setAttribute('data-cy', 'delete-todo-button');
@@ -123,6 +134,79 @@ function renderTodoList() {
     todoUl.appendChild(textLi);
   }
 }
+// function renderTodoList() {
+
+//   const todoUl = document.querySelector('[data-cy="todo-list"]');
+
+//   todoUl.innerHTML = '';
+
+//   let previousDate = null;
+//   if (todoList.length > 0) {
+//     todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
+//     for (const todo of todoList) {
+//       if (todo.date !== previousDate) {
+//         const title = document.createElement('h3');
+//         title.textContent = todo.date ?? "Laddar datum...";
+//         todoUl.appendChild(title);
+//         previousDate = todo.date;
+
+//       }
+//       const li = document.createElement('li');
+//       const link = document.createElement('a');
+//       link.classList.add('todo-link');
+
+//       const p = document.createElement('p');
+//       p.textContent = todo.date ?? "Laddar datum";
+//       p.classList.add('todo-date-p');
+
+//       link.textContent = p.textContent + ' ';
+//       link.textContent += todo.title ?? "Laddar text...";
+//       link.href = '#';
+
+//       const removeButton = document.createElement('button');
+//       removeButton.classList.add('todo-remove-button');
+//       removeButton.setAttribute('data-cy', 'delete-todo-button');
+
+//       removeButton.addEventListener('click', () => {
+//         removeTodo(todo);
+//       });
+
+//       const removeIcon = document.createElement('i');
+//       removeIcon.classList.add('fas', 'fa-trash-alt');
+
+//       removeButton.appendChild(removeIcon);
+
+//       const editButton = document.createElement('button');
+//       editButton.classList.add('todo-edit-button');
+//       editButton.setAttribute('data-cy', 'edit-todo-button');
+
+//       const editIcon = document.createElement('i');
+//       editIcon.classList.add('fas', 'fa-edit');
+
+//       editButton.addEventListener('click', () => {
+//         editTodoPopUp(todo);
+//       });
+
+//       editButton.appendChild(editIcon);
+
+//       link.addEventListener('click', () => {
+//         showTodoPopup(todo);
+//       });
+
+//       li.appendChild(link);
+//       li.appendChild(removeButton);
+//       li.appendChild(editButton);
+//       todoUl.appendChild(li);
+
+//       previousDate = todo.date;
+//     }
+//   }
+//   else {
+//     const textLi = document.createElement('li');
+//     textLi.textContent = "Det finns ingen todo än.."
+//     todoUl.appendChild(textLi);
+//   }
+// }
 
 // här skapas popup med element för varje gång man klickar på todo, finns bättre sätt
 // tex att ha en template i en html-fil som laddas in som mall för popup
@@ -351,82 +435,82 @@ function filterTodoByCalendarCell(event) {
   renderFilteredTodoList(filteredTodos);
 }
 
-function renderFilteredTodoList(filteredTodos) {
+// function renderFilteredTodoList(filteredTodos) {
 
-  const todoUl = document.querySelector('[data-cy="todo-list"]');
+//   const todoUl = document.querySelector('[data-cy="todo-list"]');
 
-  todoUl.innerHTML = '';
+//   todoUl.innerHTML = '';
 
-  let previousDate = null;
-  if (filteredTodos.length > 0) {
-    filteredTodos.sort((a, b) => new Date(a.date) - new Date(b.date));
-    for (const todo of filteredTodos) {
-      if (todo.date !== previousDate) {
-        const title = document.createElement('h3');
-        title.textContent = todo.date ?? "Laddar datum...";
-        todoUl.appendChild(title);
-        previousDate = todo.date;
+//   let previousDate = null;
+//   if (filteredTodos.length > 0) {
+//     filteredTodos.sort((a, b) => new Date(a.date) - new Date(b.date));
+//     for (const todo of filteredTodos) {
+//       if (todo.date !== previousDate) {
+//         const title = document.createElement('h3');
+//         title.textContent = todo.date ?? "Laddar datum...";
+//         todoUl.appendChild(title);
+//         previousDate = todo.date;
 
-      }
-      const li = document.createElement('li');
-      const link = document.createElement('a');
-      link.classList.add('todo-link');
+//       }
+//       const li = document.createElement('li');
+//       const link = document.createElement('a');
+//       link.classList.add('todo-link');
 
-      const p = document.createElement('p');
-      p.textContent = todo.date ?? "Laddar datum";
-      p.classList.add('todo-date-p');
+//       const p = document.createElement('p');
+//       p.textContent = todo.date ?? "Laddar datum";
+//       p.classList.add('todo-date-p');
 
-      link.textContent = p.textContent + ' ';
-      link.textContent += todo.title ?? "Laddar text...";
-      link.href = '#';
+//       link.textContent = p.textContent + ' ';
+//       link.textContent += todo.title ?? "Laddar text...";
+//       link.href = '#';
 
-      // ta bort knapp
-      const removeButton = document.createElement('button');
-      removeButton.classList.add('todo-remove-button');
-      removeButton.setAttribute('data-cy', 'delete-todo-button');
+//       // ta bort knapp
+//       const removeButton = document.createElement('button');
+//       removeButton.classList.add('todo-remove-button');
+//       removeButton.setAttribute('data-cy', 'delete-todo-button');
 
-      removeButton.addEventListener('click', () => {
-        removeTodo(todo);
-      });
+//       removeButton.addEventListener('click', () => {
+//         removeTodo(todo);
+//       });
 
-      const removeIcon = document.createElement('i');
-      removeIcon.classList.add('fas', 'fa-trash-alt');
+//       const removeIcon = document.createElement('i');
+//       removeIcon.classList.add('fas', 'fa-trash-alt');
 
-      removeButton.appendChild(removeIcon);
+//       removeButton.appendChild(removeIcon);
 
-      // redigera knapp
+//       // redigera knapp
 
-      const editButton = document.createElement('button');
-      editButton.classList.add('todo-edit-button');
-      editButton.setAttribute('data-cy', 'edit-todo-button');
+//       const editButton = document.createElement('button');
+//       editButton.classList.add('todo-edit-button');
+//       editButton.setAttribute('data-cy', 'edit-todo-button');
 
-      const editIcon = document.createElement('i');
-      editIcon.classList.add('fas', 'fa-edit');
+//       const editIcon = document.createElement('i');
+//       editIcon.classList.add('fas', 'fa-edit');
 
-      editButton.addEventListener('click', () => {
-        editTodoPopUp(todo);
-      });
+//       editButton.addEventListener('click', () => {
+//         editTodoPopUp(todo);
+//       });
 
-      editButton.appendChild(editIcon);
+//       editButton.appendChild(editIcon);
 
-      link.addEventListener('click', () => {
-        showTodoPopup(todo);
-      });
+//       link.addEventListener('click', () => {
+//         showTodoPopup(todo);
+//       });
 
-      li.appendChild(link);
-      li.appendChild(removeButton);
-      li.appendChild(editButton);
-      todoUl.appendChild(li);
+//       li.appendChild(link);
+//       li.appendChild(removeButton);
+//       li.appendChild(editButton);
+//       todoUl.appendChild(li);
 
-      previousDate = todo.date;
-    }
-  }
-  else {
-    const textLi = document.createElement('li');
-    textLi.textContent = "Det finns ingen todo än.."
-    todoUl.appendChild(textLi);
-  }
-}
+//       previousDate = todo.date;
+//     }
+//   }
+//   else {
+//     const textLi = document.createElement('li');
+//     textLi.textContent = "Det finns ingen todo än.."
+//     todoUl.appendChild(textLi);
+//   }
+// }
 
 function getTodaysDate() {
   var today = new Date();
