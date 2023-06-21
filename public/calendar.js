@@ -45,7 +45,7 @@ function addCalendarCellListeners() {
             }
 
             const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
-            renderFilteredTodoList(filteredTodos);
+            renderTodoList(filteredTodos);
         }
     });
 }
@@ -57,7 +57,7 @@ async function changeMonth(change) {
     state.month = newDate.getMonth();
     state.year = newDate.getFullYear();
 
-    state.holidays = await getHolidays(state.year, state.month + 1); 
+    state.holidays = await getHolidays(state.year, state.month + 1);
 
     updateCalendarCells();
     updateCalendarMonthLabel();
@@ -164,7 +164,7 @@ function updateCalendarCells() {
                 }
 
                 dayTodos = getTodosForDay(state.year, state.month, dayCounter);
-        
+
                 if (dayTodos.length > 0) {
                     var todosElement = document.createElement('p');
                     todosElement.textContent = dayTodos.length;

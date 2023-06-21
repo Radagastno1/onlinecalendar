@@ -1,10 +1,20 @@
 document.addEventListener('DOMContentLoaded', main);
 
+//variabler som ska kunna nås från flera metoder 
 let todoList = [];
 let popupElement;
 const speechSynthesis = window.speechSynthesis;
 
-function showAddTodoForm() {
+function initTodos() {
+  const todosUl = document.querySelector('#todo-list');
+  todosUl.classList.remove('todo-reveal-list');
+
+  addEventListeners();
+  renderTodoList();
+}
+
+//när man klickar på "lägg till todo" så togglas formuläret där man skapar en todo
+function addEventListenerToAddTodoButton() {
   const addTodoButton = document.querySelector('#add-todo-btn');
   const addTodoForm = document.querySelector('#add-todo-form');
 
@@ -13,7 +23,9 @@ function showAddTodoForm() {
   });
 }
 
-function showListOfTodos() {
+//när man klickar på 'mina todos' så togglas listan. 
+//när man klickar på 'headphones' så startar röst samt taligenkänningen
+function addEventListenerToShowTodosButton() {
   const showTodosButton = document.querySelector('#show-todos-btn');
   const todosUl = document.querySelector('#todo-list');
   const readTodosButton = document.querySelector('#read-todos-btn');
@@ -32,8 +44,11 @@ function showListOfTodos() {
 function addEventListeners() {
   const saveButton = document.querySelector('#save-todo-button');
   saveButton.addEventListener('click', saveTodo);
+  addEventListenerToAddTodoButton();
+  addEventListenerToShowTodosButton();
 }
 
+//returnerar lista med todos om finns i LS annars tom array
 function getDataFromLS() {
   const storedTodoList = localStorage.getItem('todos');
   if (storedTodoList) {
@@ -44,16 +59,27 @@ function getDataFromLS() {
   }
 }
 
-function renderTodoList() {
+//element skapas för todolistan och todos visas om finns annars en text
+function filterTodos(date) {
+  const filteredTodos = todoList.filter(todo => todo.date === date);
+  return filteredTodos;
+}
+
+function renderTodoList(filteredTodos = null) {
 
   const todoUl = document.querySelector('[data-cy="todo-list"]');
 
   todoUl.innerHTML = '';
 
+  let todosToRender = todoList;
+  if (filteredTodos !== null) {
+    todosToRender = filteredTodos;
+  }
+
   let previousDate = null;
-  if (todoList.length > 0) {
-    todoList.sort((a, b) => new Date(a.date) - new Date(b.date));
-    for (const todo of todoList) {
+  if (todosToRender.length > 0) {
+    todosToRender.sort((a, b) => new Date(a.date) - new Date(b.date));
+    for (const todo of todosToRender) {
       if (todo.date !== previousDate) {
         const title = document.createElement('h3');
         title.textContent = todo.date ?? "Laddar datum...";
@@ -73,6 +99,7 @@ function renderTodoList() {
       link.textContent += todo.title ?? "Laddar text...";
       link.href = '#';
 
+      // ta bort knapp
       const removeButton = document.createElement('button');
       removeButton.classList.add('todo-remove-button');
       removeButton.setAttribute('data-cy', 'delete-todo-button');
@@ -179,6 +206,7 @@ function showTodoPopup(todo) {
   closePopupIcon.addEventListener('click', closePopup);
 }
 
+//todo sparas till publika listan samt till LS
 function saveTodo() {
   const todoTitle = document.querySelector('#title-input').value;
   const todoDate = document.querySelector('#date-input').value;
@@ -225,7 +253,7 @@ function removeTodo(todo) {
 
   if (selectedDate !== null) {
     const filteredTodos = getTodosForDay(state.year, state.month, selectedDate);
-    renderFilteredTodoList(filteredTodos);
+    renderTodoList(filteredTodos);
   }
   else {
     renderTodoList();
@@ -299,7 +327,6 @@ function editTodoPopUp(todo) {
   divElement.appendChild(popupSaveButton);
 
   document.body.appendChild(divElement);
-
 }
 
 function updateTodo(todo) {
@@ -337,88 +364,9 @@ function filterTodoByCalendarCell(event) {
   const adjustedMonth = month + 1; // justerar månadsvärdet sålänge då det är fel
   const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-  // console.log(date); // kommenterade ut denna
-  // debugger;
   // och rendera en lista med endast de todos som har det datumet
-  const filteredTodos = todoList.filter(todo => todo.date === date);
-  renderFilteredTodoList(filteredTodos);
-}
-
-function renderFilteredTodoList(filteredTodos) {
-
-  const todoUl = document.querySelector('[data-cy="todo-list"]');
-
-  todoUl.innerHTML = '';
-
-  let previousDate = null;
-  if (filteredTodos.length > 0) {
-    filteredTodos.sort((a, b) => new Date(a.date) - new Date(b.date));
-    for (const todo of filteredTodos) {
-      if (todo.date !== previousDate) {
-        const title = document.createElement('h3');
-        title.textContent = todo.date ?? "Laddar datum...";
-        todoUl.appendChild(title);
-        previousDate = todo.date;
-
-      }
-      const li = document.createElement('li');
-      const link = document.createElement('a');
-      link.classList.add('todo-link');
-
-      const p = document.createElement('p');
-      p.textContent = todo.date ?? "Laddar datum";
-      p.classList.add('todo-date-p');
-
-      link.textContent = p.textContent + ' ';
-      link.textContent += todo.title ?? "Laddar text...";
-      link.href = '#';
-
-      // ta bort knapp
-      const removeButton = document.createElement('button');
-      removeButton.classList.add('todo-remove-button');
-      removeButton.setAttribute('data-cy', 'delete-todo-button');
-
-      removeButton.addEventListener('click', () => {
-        removeTodo(todo);
-      });
-
-      const removeIcon = document.createElement('i');
-      removeIcon.classList.add('fas', 'fa-trash-alt');
-
-      removeButton.appendChild(removeIcon);
-
-      // redigera knapp
-
-      const editButton = document.createElement('button');
-      editButton.classList.add('todo-edit-button');
-      editButton.setAttribute('data-cy', 'edit-todo-button');
-
-      const editIcon = document.createElement('i');
-      editIcon.classList.add('fas', 'fa-edit');
-
-      editButton.addEventListener('click', () => {
-        editTodoPopUp(todo);
-      });
-
-      editButton.appendChild(editIcon);
-
-      link.addEventListener('click', () => {
-        showTodoPopup(todo);
-      });
-
-      li.appendChild(link);
-      li.appendChild(removeButton);
-      li.appendChild(editButton);
-      todoUl.appendChild(li);
-
-      previousDate = todo.date;
-    }
-  }
-  else {
-    const textLi = document.createElement('li');
-    textLi.textContent = "Det finns ingen todo än.."
-    todoUl.appendChild(textLi);
-  }
+  const filteredTodos = filterTodos(todoList);
+  renderTodoList(filteredTodos);
 }
 
 function getTodaysDate() {
@@ -436,8 +384,8 @@ function renderTodoSound() {
 }
 
 function readTodos() {
-  var todoText = ""; 
- 
+  var todoText = "";
+
   todoList.forEach(function (todo) {
     if (todo.title !== '') {
       var todoString = todo.date + ': ' + todo.title;
@@ -453,7 +401,7 @@ function readTodos() {
 }
 
 function startListening() {
-  
+
   var question = 'Do you want me to read your too doos?';
   var speak = new SpeechSynthesisUtterance(question);
   speak.voiceURI = 'Siri Female';

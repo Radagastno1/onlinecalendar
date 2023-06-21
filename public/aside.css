@@ -10,11 +10,9 @@ aside {
   height: 100%;
   width: 350px;
 }
-
-
 .todo-aside {
 background-color: rgb(211, 145, 158);
-margin-top: 160px; 
+margin-top: 140px; 
 height: calc(100% - 228px); 
 display: flex;
 flex-direction: column;
@@ -180,7 +178,8 @@ text-transform: uppercase;
   top: 0;
   left: 0;
   display: flexbox;
-  height: 128px;
+  /* height: 128px; */
+  height: 7rem;
   width: 350px;
   padding: 20px; 
   box-sizing: border-box; 
