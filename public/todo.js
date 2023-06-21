@@ -1,4 +1,4 @@
-//variabler som ska kunna nås från flera metoder 
+//global scope
 let todoList = [];
 let popupElement;
 const speechSynthesis = window.speechSynthesis;
@@ -347,18 +347,6 @@ function closePopup() {
   if (popUpDiv !== null) {
     popUpDiv.remove();
   }
-}
-
-function filterTodoByCalendarCell(event) {
-  const calendarCell = event.target;
-  const day = calendarCell.textContent;
-  const { month, year } = state;
-  const adjustedMonth = month + 1; // justerar månadsvärdet
-  const date = `${year}-${adjustedMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-  // och rendera en lista med endast de todos som har det datumet
-  const filteredTodos = filterTodos(todoList);
-  renderTodoList(filteredTodos);
 }
 
 function getTodaysDate() {
