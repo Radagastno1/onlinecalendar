@@ -147,19 +147,6 @@
         scroll-snap-align: start;
     }
 
-    .maximize-button {
-        display: block;
-        /* Visa maximize-knappen */
-        position: fixed;
-        /* Lägg till position: fixed för att hålla den synlig */
-        bottom: 20px;
-        /* Justera positionen längst ned på sidan */
-        right: 20px;
-        /* Justera positionen längst till höger på sidan */
-        z-index: 9999;
-        /* Lägg till z-index för att placera den över andra element */
-    }
-
     .items {
         display: flex;
         justify-content: space-between;
