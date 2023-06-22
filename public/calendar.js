@@ -7,11 +7,11 @@ const state = {
 
 let dayTodos = [];
 let selectedDate = null;
+const holidaysCache = {};
 
 //bygger upp kalendern
 async function initCalendar() {
 
-    state.holidays = await getHolidays(state.year, state.month + 1); // Uppdatera holidays i state
     // byter månad efter knapptryck
     var prevMonthButton = document.querySelector("[data-cy='prev-month']");
     var nextMonthButton = document.querySelector("[data-cy='next-month']");
@@ -24,8 +24,11 @@ async function initCalendar() {
         changeMonth(1);
     });
 
+    state.holidays = await getHolidays(state.year, state.month + 1);
+
     updateCalendarCells();
     addCalendarCellListeners();
+    updateCalendarMonthLabel();
 
 }
 
@@ -56,16 +59,18 @@ function addCalendarCellListeners() {
 
 async function changeMonth(change) {
     const { month, year } = state;
-
+  
     var newDate = new Date(year, month + change, 1);
     state.month = newDate.getMonth();
     state.year = newDate.getFullYear();
-     // hämta heldagar för nya månaden
+  
+    // Hämta helgdagar för den nya månaden
     state.holidays = await getHolidays(state.year, state.month + 1);
-
-    updateCalendarCells();
+  
     updateCalendarMonthLabel();
-}
+    updateCalendarCells();
+  }
+  
 //uppdaterar månadsrubriken md den aktuella månaden och året
 function updateCalendarMonthLabel() {
     const { month, year } = state;
@@ -224,32 +229,33 @@ function getTodosForDay(year, month, day) {
 }
 
 async function getHolidays(year, month) {
-    //skapar url för api baserat på året och månaden
-    const apiUrl = `https://sholiday.faboul.se/dagar/v2.1/${year}/${month}`;
-    try {
-        const response = await fetch(apiUrl);
+  const cacheKey = `${year}-${month}`;
+  
+  // kontrollera om helgdagar redan finns i cachen
+  if (holidaysCache[cacheKey]) {
+    return holidaysCache[cacheKey];
+  }
 
-        const data = await response.json();
+  // Gör API-anrop för att hämta helgdagar
+  const apiUrl = `https://sholiday.faboul.se/dagar/v2.1/${year}/${month}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-         //filtrerar api datum till önskat format för helgdagar
-        const holidays = data.dagar
-            .filter((d) => d.helgdag) //dagen som är helgdag
-            .map((d) => ({
-                helgdag: d.helgdag, //sätt namnet på helgdagen
-                datum: d.datum, //och datum för helgdagen
-            }));
-        return holidays || [];
+    // filtrera och formatterar helgdagar
+    const holidays = data.dagar
+      .filter((d) => d.helgdag)
+      .map((d) => ({
+        helgdag: d.helgdag,
+        datum: d.datum,
+      }));
 
-    } catch {
-        console.log(response);
-        debugger;
-    }
+    // Lagra helgdagarna i cachen
+    holidaysCache[cacheKey] = holidays;
+
+    return holidays;
+  } catch (error) {
+    console.log(error);
+    debugger;
+  }
 }
-
-
-
-
-
-
-
-
