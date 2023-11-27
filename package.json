@@ -4,7 +4,7 @@
   "author": "Plugga Tech",
   "scripts": {
     "postinstall": "plugga init",
-    "dev": "cd public && vite --open",
+    "dev": "vite --open",
     "update": "plugga update",
     "test": "plugga test"
   },

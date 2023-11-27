@@ -105,14 +105,14 @@ aside {
 }
 
 #save-todo-button {
-  padding: 4px 12px;
+  padding: 10px 20px;
+  margin-top: 10px;
   color: aliceblue;
   background-color: rgb(11, 11, 11);
   font-family: "Helvetica", Arial, sans-serif;
   letter-spacing: 1px;
   border: none;
   border-radius: 2px;
-  height: 30px;
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -148,7 +148,7 @@ aside {
   white-space: normal;
   color: rgb(255, 255, 255);
   font-family: "Helvetica", Arial, sans-serif;
-  font-size: 12px;
+  padding: 20px;
   margin-bottom: 5px;
   padding: 5px 5px 5px 15px;
   background-color: #333333;
@@ -159,7 +159,7 @@ aside {
 .todo-list h3 {
   font-family: "Helvetica", Arial, sans-serif;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   letter-spacing: 2px;
   padding: 10px;
@@ -288,4 +288,49 @@ button,
 a,
 i {
   cursor: pointer;
+}
+
+/* Anpassa efter din design */
+.styled-textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  resize: vertical; /* Tillåt endast vertikal storleksändring */
+  font-family: "Helvetica Neue", sans-serif; /* Använd en passande typsnittsfamilj */
+}
+
+/* Hover-effekt om du vill lägga till en interaktiv känsla */
+.styled-textarea:hover,
+.styled-textarea:focus {
+  border-color: #4caf50; /* Anpassa färgen efter din design */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); /* Anpassa skuggan efter din design */
+  outline: none; /* Ta bort standardfokusramen om du vill ersätta med din egen */
+}
+
+/* Anpassa efter din design */
+.styled-date-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: "Helvetica Neue", sans-serif; /* Använd en passande typsnittsfamilj */
+}
+
+/* Hover-effekt om du vill lägga till en interaktiv känsla */
+.styled-date-input:hover,
+.styled-date-input:focus {
+  border-color: #4caf50; /* Anpassa färgen efter din design */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); /* Anpassa skuggan efter din design */
+  outline: none; /* Ta bort standardfokusramen om du vill ersätta med din egen */
+}
+
+aside p {
+  font-size: 20px;
 }
